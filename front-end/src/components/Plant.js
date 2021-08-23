@@ -12,7 +12,7 @@ function Plant(props){
     //will need to get confirmation on what props are available or if need to build useState inside here
     const { items } = props;
 
-    const (itemId) = useParams();
+    const {itemId} = useParams();
     // not sure if below is necessary
     const { path, url } = useRouteMatch();
 
@@ -29,7 +29,7 @@ function Plant(props){
                 <div className='plant-title-wrapper'>
                     {/* This is if we want to add an image for stretch */}
                     {/* <img src='' alt={plant.species} /> */}
-                    <h2>{if plant.nickname ? plant.nickname : plant.species}</h2>
+                    {/* <h2>{if plant.nickname ? plant.nickname : plant.species}</h2> */}
                     <h4>Species: {plant.species}</h4>
                     <h4>How often to water: {plant.h2oFrequency}</h4>
                 </div>

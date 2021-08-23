@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Route, Link, Switch } from 'react-router-dom';
+import Home from './components/Home'
 import Login from './components/Login';
 import Plant from './components/Plant';
 import PlantsList from './components/PlantsList';
 import ProfilePage from './components/ProfilePage';
 
 function App() {
+  const [stock, setStock] = useState([])
+
   return (
     <div className="App">
       <header className="App-header">
@@ -22,11 +25,11 @@ function App() {
 
       <Switch>
         <Route path="/plants-list/:plantId">
-          <Plant />
+          <Plant items={stock}/>
         </Route>
 
         <Route path="/plants-list">
-          <PlantsList />
+          <PlantsList items={stock}/>
         </Route>
 
         <Route path="/login">
@@ -35,6 +38,10 @@ function App() {
 
         <Route path="/profile">
           <ProfilePage />
+        </Route>
+
+        <Route path="/">
+          <Home />
         </Route>
       </Switch>
     </div>

@@ -1,14 +1,13 @@
-
 import React from 'react';
 import { Link, useRouteMatch } from 'react-router-dom';
-
 function PlantsList(props){
     const { items } = props;
     const { url } = useRouteMatch();
 
     return (
         <div className='plants-list-wrapper'>
-            {items.map(item => (
+                {items.map(plant => (
+
                 <div
                     className='plant-card'
                     key={plant.id}
@@ -29,4 +28,6 @@ function PlantsList(props){
 } 
 
 export default PlantsList;
+
+
 

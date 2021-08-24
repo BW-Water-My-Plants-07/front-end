@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import axios from 'axios'
 
-const EditPlantForm = props => {
+const AddPlantForm = props => {
     const { push } = useHistory();
     const { setPlants } = props;
 
@@ -33,7 +33,7 @@ const EditPlantForm = props => {
         <div>
             <form onSubmit={handleSubmit}>
                 <div className="form-header">
-                    <h3>Editing <strong>{plant.nickname}</strong></h3>
+                    <h1>Add a Plant! <strong>{plant.nickname}</strong></h1>
                  </div>
                  <div className="form-body">
                     <div className="form-group">
@@ -58,4 +58,4 @@ const EditPlantForm = props => {
         
     )
 }
-export default EditPlantForm
+export default AddPlantForm

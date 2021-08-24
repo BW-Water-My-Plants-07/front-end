@@ -6,6 +6,8 @@ import Plant from './components/Plant';
 import PlantsList from './components/PlantsList';
 import ProfilePage from './components/ProfilePage';
 import SignUp from './components/SignUp'
+import AddPlantForm from './components/AddPlantForm'
+
 
 function App() {
   const [stock, setStock] = useState([])
@@ -22,6 +24,7 @@ function App() {
           <Link to="/plants-list">Shop</Link>
           <Link to="/profile">Profile</Link>
           <Link to="/sign-up">Sign Up</Link>
+          <Link to="add-plant">Add Plant</Link>
         </div>
       </nav>
 
@@ -33,10 +36,13 @@ function App() {
         <Route path="/plants-list">
           <PlantsList items={stock}/>
         </Route>
-
+        <Route path="/add-plant">
+          <AddPlantForm />
+        </Route>
         <Route path="/login">
           <Login />
         </Route>
+        
         <Route path="/sign-up">
           <SignUp />
         </Route>

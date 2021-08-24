@@ -6,6 +6,7 @@ import Plant from './components/Plant';
 import PlantsList from './components/PlantsList';
 import ProfilePage from './components/ProfilePage';
 import SignUp from './components/SignUp'
+<<<<<<< HEAD
 import './App.css'
 import styled from 'styled-components';
 
@@ -65,12 +66,17 @@ const StyledApp = styled.div`
     color: #fceed1;
   }
 `
+=======
+import AddPlantForm from './components/AddPlantForm'
+
+>>>>>>> f752d101886f9b77915ce58885eb71e776118df0
 
 function App() {
   const [stock, setStock] = useState([])
 
   return (
     <div className="App">
+<<<<<<< HEAD
       <StyledApp id="wrapper">
         <header className="App-header">
           <div className='flex-container-left'>
@@ -114,6 +120,49 @@ function App() {
         </Switch>
       </StyledApp>
 
+=======
+      <header className="App-header">
+
+      </header>
+      <nav>
+        <div className='nav-links'>
+          <Link to="/">Home</Link>
+          <Link to="/login">Login</Link>
+          <Link to="/plants-list">Shop</Link>
+          <Link to="/profile">Profile</Link>
+          <Link to="/sign-up">Sign Up</Link>
+          <Link to="add-plant">Add Plant</Link>
+        </div>
+      </nav>
+
+      <Switch>
+        <Route path="/plants-list/:plantId">
+          <Plant items={stock}/>
+        </Route>
+
+        <Route path="/plants-list">
+          <PlantsList items={stock}/>
+        </Route>
+        <Route path="/add-plant">
+          <AddPlantForm />
+        </Route>
+        <Route path="/login">
+          <Login />
+        </Route>
+        
+        <Route path="/sign-up">
+          <SignUp />
+        </Route>
+
+        <Route path="/profile">
+          <ProfilePage />
+        </Route>
+
+        <Route path="/">
+          <Home />
+        </Route>
+      </Switch>
+>>>>>>> f752d101886f9b77915ce58885eb71e776118df0
     </div>
   );
 }

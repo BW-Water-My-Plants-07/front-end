@@ -7,6 +7,7 @@ function PlantsList(props){
     return (
         <div className='plants-list-wrapper'>
                 {items.map(plant => (
+
                 <div
                     className='plant-card'
                     key={plant.id}
@@ -25,4 +26,8 @@ function PlantsList(props){
         </div>
     )
 } 
+
 export default PlantsList;
+
+
+

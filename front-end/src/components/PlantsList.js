@@ -8,7 +8,7 @@ function PlantsList(props){
 
     return (
         <div className='plants-list-wrapper'>
-            {items.map(item => (
+            {items.map(plant => (
                 <div
                     className='plant-card'
                     key={plant.id}

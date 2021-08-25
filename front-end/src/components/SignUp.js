@@ -131,7 +131,7 @@ export default function SignUp(props) {
               <h2>Create your account</h2>
               <p>Do you already have an account?
                   <Link to={`/login`}>
-                    <button type='button' class='fill'>
+                    <button type='button' className='fill'>
                       Log In
                     </button>
                   </Link>

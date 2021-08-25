@@ -139,33 +139,33 @@ export default function Home() {
                             fermentum. Nullam venenatis erat id vehicula ultrices sed ultricies
                             condimentum.
                         </p>
-                        <ul class="feature-icons">
-                            <li class="icon">
+                        <ul className="feature-icons">
+                            <li className="icon">
                                 <img className='rocket'
                                     alt='Rocket'
                                     src='https://image.flaticon.com/icons/png/512/4549/4549343.png' />
                                 Consequat tempus</li>
-                            <li class="icon">
+                            <li className="icon">
                                 <img className='analysis'
                                     alt='Analysis'
                                     src='https://image.flaticon.com/icons/png/512/4549/4549345.png' />
                                 Etiam adipiscing</li>
-                            <li class="icon">
+                            <li className="icon">
                                 <img className='barChart'
                                     alt='Bar chart'
                                     src='https://image.flaticon.com/icons/png/512/4549/4549349.png' />
                                 Libero nullam</li>
-                            <li class="icon">
+                            <li className="icon">
                                 <img className='handshake'
                                     alt='Handshake'
                                     src='https://image.flaticon.com/icons/png/512/4549/4549352.png' />
                                 Blandit condimentum</li>
-                            <li class="icon">
+                            <li className="icon">
                                 <img className='growth'
                                     alt='Growth'
                                     src='https://image.flaticon.com/icons/png/512/4549/4549357.png' />
                                 Lorem ipsum dolor</li>
-                            <li class="icon">
+                            <li className="icon">
                                 <img className='marketing'
                                     alt='Marketing'
                                     src='https://image.flaticon.com/icons/png/512/4549/4549361.png' />

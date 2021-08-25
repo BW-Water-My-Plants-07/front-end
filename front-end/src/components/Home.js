@@ -99,8 +99,10 @@ const StyledHome = styled.div`
         margin: 2rem 0;
         font-size: 1rem;
     }
+
+
 `
-export default function Home(){
+export default function Home() {
     const history = useHistory()
     const routeToSignUp = () => history.push('/register');
     const routeToShop = () => history.push('/plants-list')

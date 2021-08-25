@@ -169,7 +169,7 @@ function App() {
             <div className='nav-links'>
               <Link to="/">Home</Link>
               <Link to="/login">Login</Link>
-              <Link to="/plants">Shop</Link>
+              <Link to="/plants">Plants</Link>
               <Link to="/profile">Profile</Link>
               <Link to="/add-plant">Add Plant</Link>
               <a href="/" onClick={logout}>Log Out</a>

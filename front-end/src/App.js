@@ -169,7 +169,7 @@ function App() {
             <div className='nav-links'>
               <Link to="/">Home</Link>
               <Link to="/login">Login</Link>
-              <Link to="/plants">Shop</Link>
+              <Link to="/plants">Plants</Link>
               <Link to="/profile">Profile</Link>
               <Link to="/add-plant">Add Plant</Link>
               <a href="/" onClick={logout}>Log Out</a>
@@ -212,14 +212,14 @@ function App() {
           />
           <div className='footer-content'>
             <h2>Contact Us</h2>
-            <ul class='items'>
+            <ul className='items'>
               <li>
                 <h3>Email</h3>
-                <a href="#">information@untitled.ext</a>
+                <a href="#footer">information@untitled.ext</a>
               </li>
               <li>
                 <h3>Phone</h3>
-                <a href="#">(000) 000-0000</a>
+                <a href="#footer">(000) 000-0000</a>
               </li>
               <li>
                 <h3>Address</h3>
@@ -227,32 +227,32 @@ function App() {
               </li>
               <li>
                 <h3>Elsewhere</h3>
-                <a href="#">
+                <a href="#footer">
                   <img className='icon twitter'
                     alt='twitter'
                     src='https://image.flaticon.com/icons/png/512/733/733635.png' />
                 </a>
-                <a href="#">
+                <a href="#footer">
                   <img className='icon facebook'
                     alt='facebook'
                     src='https://image.flaticon.com/icons/png/512/1384/1384005.png' />
                 </a>
-                <a href="#">
+                <a href="#footer">
                   <img className='icon instagram'
                     alt='instagram'
                     src='https://image.flaticon.com/icons/png/512/1400/1400829.png' />
                 </a>
-                <a href="#">
+                <a href="#footer">
                   <img className='icon linkedin'
                     alt='linkedin'
                     src='https://image.flaticon.com/icons/png/512/1384/1384014.png' />
                 </a>
-                <a href="#">
+                <a href="#footer">
                   <img className='icon github'
                     alt='github'
                     src='https://image.flaticon.com/icons/png/512/1051/1051326.png' />
                 </a>
-                <a href="#">
+                <a href="#footer">
                   <img className='icon codepen'
                     alt='codepen'
                     src='https://image.flaticon.com/icons/png/512/2111/2111341.png' />

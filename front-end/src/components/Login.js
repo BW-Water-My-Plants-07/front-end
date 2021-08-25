@@ -130,7 +130,7 @@ export default function Login(props) {
           <h2>Login to your account</h2>
           <p>Do not have an account?
             <Link to="/register">
-              <button type='button' class='fill'>
+              <button type='button' className='fill'>
                 Create account
               </button>
             </Link>

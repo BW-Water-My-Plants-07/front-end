@@ -104,8 +104,9 @@ const AddPlantForm = props => {
         e.preventDefault()
         axios.post("https://bw-water-my-plants-07-back-end.herokuapp.com/api/plants", plant)
             .then(res => {
+                console.log(res.data)
                 setPlants(res.data)
-                push(`/plants-list`)
+                push(`/plants`)
             })
     }
     const { nickname, species, h2oFrequency } = plant
@@ -114,7 +115,7 @@ const AddPlantForm = props => {
         <StyledAddPlant>
             <div className='form-wrapper'>
                 <div className="form-header">
-                    <h2>Add a Plant<strong>{plant.nickname}</strong></h2>
+                    <h2>Add a Plant</h2>
                 </div>
                 <form onSubmit={handleSubmit}>
                     <div className="form-body">

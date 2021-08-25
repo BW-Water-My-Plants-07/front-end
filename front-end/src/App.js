@@ -7,8 +7,11 @@ import PlantsList from './components/PlantsList';
 import ProfilePage from './components/ProfilePage';
 import SignUp from './components/SignUp'
 import AddPlantForm from './components/AddPlantForm'
+import EditPlantForm from './components/EditPlantForm'
+import PrivateRoute from './components/PrivateRoute'
 import './App.css'
 import styled from 'styled-components'
+import axios from 'axios'
 
 const StyledApp = styled.div`
   font-family: sans-serif;
@@ -61,7 +64,22 @@ const StyledApp = styled.div`
 
 
 function App() {
-  const [stock, setStock] = useState([])
+  // const [stock, setStock] = useState([])
+  const [plants, setPlants] = useState([])
+  
+  useEffect(()=>{
+    axios.get(" https://bw-water-my-plants-07-back-end.herokuapp.com/api/plants")
+      .then(res=>{
+        setPlants(res.data)
+      })
+      .catch(err=> {
+        console.log(err)
+      })
+  }, [plants])
+  const logout = () => {
+    localStorage.removeItem("token");
+    window.location.href = "login"
+  }
 
   return (
     <div className="App">
@@ -75,41 +93,37 @@ function App() {
             <div className='nav-links'>
               <Link to="/">Home</Link>
               <Link to="/login">Login</Link>
-              <Link to="/plants-list">Shop</Link>
+              <Link to="/plants">Shop</Link>
               <Link to="/profile">Profile</Link>
               <Link to="/add-plant">Add Plant</Link>
+              <a href="/" onClick={logout}>Log Out</a>
             </div>
           </nav>
         </header>
 
         <Switch>
-          <Route path="/plants-list/:plantId">
-            <Plant items={stock} />
-          </Route>
+        <PrivateRoute path="/edit-plant/:plantId" component={EditPlantForm}/>
+            
+        <PrivateRoute path="/plants/:plantId" component={Plant}/>
 
-          <Route path="/plants-list">
-            <PlantsList items={stock} />
-          </Route>
+        <PrivateRoute path="/plants" component={PlantsList}/>
+            
+        <PrivateRoute path="/add-plant" component={AddPlantForm}/>
 
-          <Route path="/add-plant">
-            <AddPlantForm />
-          </Route>
+        <PrivateRoute path="/profile" component={ProfilePage}/>
           
-          <Route path="/login">
-            <Login />
-          </Route>
+        <Route path="/login">
+          <Login />
+        </Route>
 
-          <Route path="/sign-up">
-            <SignUp />
-          </Route>
+        <Route path="/register">
+          <SignUp />
+        </Route>
 
-          <Route path="/profile">
-            <ProfilePage />
-          </Route>
-
-          <Route path="/">
-            <Home />
-          </Route>
+        <Route path="/">
+          <Home />
+        </Route>
+        
         </Switch>
       </StyledApp>
       

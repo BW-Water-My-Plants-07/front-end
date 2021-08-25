@@ -14,7 +14,7 @@ const EditPlantForm = props => {
         h2oFrequency:"",
     })
     useEffect(()=> {
-        axios.get("")
+        axios.get(`https://bw-water-my-plants-07-back-end.herokuapp.com/api/plants/${id}`)
         .then(res=>{
             setPlant(id)
         })
@@ -30,7 +30,7 @@ const EditPlantForm = props => {
     }
     const handleSubmit = e =>{
         e.preventDefault()
-        axios.put("", plant)
+        axios.put(`https://bw-water-my-plants-07-back-end.herokuapp.com/api/plants/${id}`, plant)
         .then(res=>{
             setPlants(res.data)
             push(`/plants-list/${id}`)

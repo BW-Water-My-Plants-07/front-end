@@ -43,7 +43,7 @@ const StyledHome = styled.div`
 `
 export default function Home(){
     const history = useHistory()
-    const routeToSignUp = () => history.push('/sign-up');
+    const routeToSignUp = () => history.push('/register');
     return(
         <StyledHome>
         <div className='home-wrapper'>

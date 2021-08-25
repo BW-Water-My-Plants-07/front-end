@@ -21,7 +21,7 @@ const AddPlantForm = props => {
     }
     const handleSubmit = e =>{
         e.preventDefault()
-        axios.put("", plant)
+        axios.post("https://bw-water-my-plants-07-back-end.herokuapp.com/api/plants", plant)
         .then(res=>{
             setPlants(res.data)
             push(`/plants-list`)

@@ -1,7 +1,9 @@
 import React, {useState} from 'react'
 import axios from 'axios'
+import {useHistory} from 'react-router-dom'
 
 export default function Login(props) {
+    let history = useHistory()
     const [user, setUser] = useState({
         username:"",
         password: "",
@@ -20,10 +22,10 @@ export default function Login(props) {
       const handleSubmit = e =>{
         e.preventDefault()
         axios
-         .post('', user)
+         .post('https://bw-water-my-plants-07-back-end.herokuapp.com/api/auth/login', user)
           .then(res=>{
-            localStorage.setItem("token", res.data.payload)
-            props.history.push('/profile')
+            localStorage.setItem("token", res.data)
+            history.push('/plants')
           })
           .catch((err=>{
             console.log(err)

@@ -1,11 +1,13 @@
 import React, {useState} from 'react'
 import axios from 'axios'
+import {useHistory} from 'react-router-dom'
 
-export default function Login(props) {
+export default function SignUp(props) {
+    let history = useHistory()
     const [user, setUser] = useState({
-        username:"",
-        phoneNumber:"",
-        password: "",
+        // username:"",
+        // phoneNumber:"",
+        // password: "",
       })
     
       const [error, setError] = useState(
@@ -21,15 +23,16 @@ export default function Login(props) {
       const handleSubmit = e =>{
         e.preventDefault()
         axios
-         .post('', user)
+         .post('https://bw-water-my-plants-07-back-end.herokuapp.com/api/auth/register')
           .then(res=>{
-            localStorage.setItem("token", res.data.payload)
-            props.history.push('/profile')
+            console.log(res.data)
+            localStorage.setUser(res.data)
+            history.push('/profile')
           })
-          .catch((err=>{
+          .catch(err=>{
             console.log(err)
             setError("Error!")
-          }))
+          })
       }
     return (
         <div>
@@ -46,7 +49,7 @@ export default function Login(props) {
                     /> 
                 </label>
                 <label>
-                    Phone Number
+                    Phone Number:
                     <input
                         name="phoneNumber"
                         type="tel"
@@ -57,7 +60,7 @@ export default function Login(props) {
                     />
                 </label>
                 <label>
-                    Password
+                    Password:
                     <input
                         name="password"
                         type="password"

@@ -4,10 +4,10 @@ const axiosWithAuth = () => {
   const token = localStorage.getItem('token');
 
   return axios.create({
-    //baseURL: '',
     headers: {
-      Authorization: token,
+      Authorization: token
     },
+    baseURL:'https://bw-water-my-plants-07-back-end.herokuapp.com'
   });
 };
 

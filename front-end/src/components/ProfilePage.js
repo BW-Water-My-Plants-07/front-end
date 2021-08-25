@@ -1,7 +1,14 @@
-import React from 'react'
+import React from 'react';
+import styled from 'styled-components';
+
+const StyledProfile = styled.div`
+    padding-top: 500px;
+`
 
 export default function ProfilePage() {
     return (
-        <div></div>
+        <StyledProfile>
+            <div></div>
+        </StyledProfile>
     )
 }

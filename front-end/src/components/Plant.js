@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { useEffect } from 'react'
 import styled from 'styled-components';
 import { useParams, Link, useRouteMatch, Route } from 'react-router-dom';
-import { axiosWithAuth } from '../utils/axiosWithAuth';
+// import { axiosWithAuth } from '../utils/axiosWithAuth';
 import EditPlantForm from './EditPlantForm';
 
 const StyledPlant = styled.div`
@@ -76,17 +76,17 @@ function Plant(props) {
     const { plantId } = useParams();
     const { url } = useRouteMatch();
 
-    useEffect(()=>{
-        axiosWithAuth()
-            .get(`/plants`)
-            .then(res=>{
-                setPlants(res.data)
-                console.log(res.data)
-            })
-            .catch(err=>{
-                console.log(err)
-            })
-    },[])
+    // useEffect(()=>{
+    //     axiosWithAuth()
+    //         .get(`/plants`)
+    //         .then(res=>{
+    //             setPlants(res.data)
+    //             console.log(res.data)
+    //         })
+    //         .catch(err=>{
+    //             console.log(err)
+    //         })
+    // },[])
 
     const plant = plants.find(plant => plant.id === parseInt(plantId))
 

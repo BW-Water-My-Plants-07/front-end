@@ -1,14 +1,7 @@
 import axios from 'axios';
 import React from 'react'
 import styled from 'styled-components';
-import {
-    useParams,
-    Link,
-    useRouteMatch,
-    Route,
-    // Switch,
-    // NavLink
-} from 'react-router-dom';
+import { useParams, Link, useRouteMatch, Route } from 'react-router-dom';
 import EditPlantForm from './EditPlantForm';
 
 const StyledPlant = styled.div`
@@ -78,11 +71,9 @@ const StyledPlant = styled.div`
 `
 
 function Plant(props) {
-    //will need to get confirmation on what props are available or if need to build useState inside here
     const { plants, setPlant, deletePlant } = props;
     const { plantId } = useParams();
-    // not sure if below is necessary
-    const { path, url } = useRouteMatch();
+    const { url } = useRouteMatch();
     const plant = plants.find(plant => plant.id === parseInt(plantId))
 
     if (!plant) return 'Plant not found...'

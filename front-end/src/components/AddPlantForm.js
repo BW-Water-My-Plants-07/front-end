@@ -31,7 +31,6 @@ const StyledAddPlant = styled.div`
             label {
                 display: flex;
                 flex-direction: column;
-                align-items: flex-start;
                 font-size: 1rem;
                 font-weight: 200;
                 letter-spacing: 1px;
@@ -43,6 +42,13 @@ const StyledAddPlant = styled.div`
                 margin: 0.5rem 0;
                 box-sizing: border-box;
                 margin-bottom: 2rem;
+              }
+              .dropdown {
+                width: 100%;
+                padding: 1rem 3.6rem;
+                margin: 0.5rem 0 1.8rem 0;
+                box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+                
               }
         }
         .submit-btn {
@@ -92,6 +98,7 @@ const AddPlantForm = props => {
         nickname: "",
         species: "",
         h2oFrequency: "",
+        img:""
     })
 
     const handleChange = (e) => {
@@ -109,7 +116,7 @@ const AddPlantForm = props => {
                 push(`/plants`)
             })
     }
-    const { nickname, species, h2oFrequency } = plant
+    const { nickname, species, h2oFrequency, img } = plant
 
     return (
         <StyledAddPlant>
@@ -128,8 +135,22 @@ const AddPlantForm = props => {
                             <input value={species} onChange={handleChange} name="species" type="text" className="form-control" />
                         </div>
                         <div className="form-group">
-                            <label>H2O Frequency </label>
-                            <input value={h2oFrequency} onChange={handleChange} name="h2oFrequency" type="text" className="form-control" />
+                            <label>H2O Frequency 
+                                <select className="dropdown" onChange={handleChange} name='h2oFrequency' value={h2oFrequency}>
+                                    <option value=''>- Select an option -</option>
+                                    <option value='Everyday'>Everyday</option>
+                                    <option value='Every two days'>Every two days</option>
+                                    <option value='2 times per week'>2 times per week</option>
+                                    <option value='Once a week'>Once a week</option>
+                                    <option value='Every two weeks'>Every two weeks</option>
+                                    <option value='Once a month'>Once a month</option>
+                                </select>
+                            </label>
+                            {/* <input value={h2oFrequency} onChange={handleChange} name="h2oFrequency" type="text" className="form-control" /> */}
+                        </div>
+                        <div className="form-group">
+                            <label>Image link </label>
+                            <input value={img} onChange={handleChange} name="img" type="text" className="form-control" />
                         </div>
                     </div>
                     <div className="form-submit">

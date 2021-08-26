@@ -7,7 +7,7 @@ import PlantsList from './components/PlantsList';
 import ProfilePage from './components/ProfilePage';
 import SignUp from './components/SignUp'
 import AddPlantForm from './components/AddPlantForm'
-import EditPlantForm from './components/EditPlantForm'
+// import EditPlantForm from './components/EditPlantForm'
 import PrivateRoute from './components/PrivateRoute'
 import './App.css'
 import styled from 'styled-components'
@@ -144,14 +144,23 @@ function App() {
   const [plants, setPlants] = useState([])
 
   useEffect(() => {
-    axios.get(" https://bw-water-my-plants-07-back-end.herokuapp.com/api/plants")
-      .then(res => {
-        setPlants(res.data)
-      })
-      .catch(err => {
-        console.log(err)
-      })
-  }, [plants])
+    // commented out for testing without the back-end 
+    // axios.get(" https://bw-water-my-plants-07-back-end.herokuapp.com/api/plants")
+    //   .then(res => {
+    //     setPlants(res.data)
+    //   })
+    //   .catch(err => {
+    //     console.log(err)
+    //   })
+      const data = [
+        {id: 101, nickname:"Queeny Purple", species:"Alcea - Hollyhocks", h2oFrequency:"2 times per week", img:"https://www.gardenia.net/storage/app/public/uploads/images/detail/Alcea_Queeny_Purple_Bloom_20470Optimized.jpg"},
+        {id: 102, nickname:"Joseph's Coat", species:"Alternanthera", h2oFrequency:"2 times per week", img:"https://www.gardenia.net/storage/app/public/uploads/images/detail/T7UxEvM92jaTjdWbVMusDT5lEbHmcqMqn5lpWuCX.jpeg"},
+        {id: 103, nickname:"Rosa Albertine", species:"Rambler Roses", h2oFrequency:"2 times per week", img:"https://www.gardenia.net/storage/app/public/uploads/images/detail/75869.jpg"},
+        {id: 104, nickname:"Calanthe Takane", species:"Hardy Orchid", h2oFrequency:"2 times per week", img:"https://www.gardenia.net/storage/app/public/uploads/images/detail/JM19k1VX353dzdcdeMnexLSUcPrxNlEyGTgWS0R2.jpeg"},
+      ];
+      setPlants(data);
+  }, [])  
+
   const logout = () => {
     localStorage.removeItem("token");
     window.location.href = "login"
@@ -178,6 +187,13 @@ function App() {
         </header>
 
         <Switch>
+
+          {/* <PrivateRoute path="/edit-plant/:plantId" component={EditPlantForm} /> */}
+
+          {/* <PrivateRoute path="/plants/:plantId" component={Plant} /> */}
+
+          {/* <PrivateRoute path="/plants" component={PlantsList} /> */}
+
           <PrivateRoute path="/edit-plant/:plantId" component={EditPlantForm}/>
 
           <PrivateRoute path="/plants/:plantId" component={Plant}/>
@@ -189,6 +205,14 @@ function App() {
           <PrivateRoute path="/add-plant" component={AddPlantForm}/>
 
           <PrivateRoute path="/profile" component={ProfilePage}/>
+
+          <Route path="/plants/:itemId">
+            <Plant items={plants} setPlants={setPlants}/>
+          </Route>
+          
+          <Route path="/plants">
+            <PlantsList items={plants} />
+          </Route>
 
           <Route path="/login">
             <Login />

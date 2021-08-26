@@ -2,6 +2,65 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import axios from 'axios'
+import styled from 'styled-components';
+
+const StyledEditForm = styled.div`
+    .form-wrapper {
+        margin: 4rem 0;
+        font-size: 1rem;
+        font-weight: 200;
+        letter-spacing: 1px;
+    }
+
+    .form-body {
+        display: flex;
+        flex-direction: column;
+        margin: 2rem;
+        width: 20rem;
+      }
+      label {
+        display: flex;
+        flex-direction: column;
+        font-size: 1rem;
+        font-weight: 200;
+        letter-spacing: 1px;
+        margin-bottom: 0.2rem;
+      }  
+      input {
+        width: 100%;
+        padding: 1rem 2rem;
+        margin: 0.5rem 0;
+        box-sizing: border-box;
+        margin-bottom: 2rem;
+      }
+      .dropdown {
+        width: 100%;
+        padding: 1rem 3.6rem;
+        margin: 0.5rem 0 1.8rem 0;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      }
+      .form-submit {
+          display: flex;
+          width: 80%;
+          justify-content: space-evenly;
+      }
+      .submit-btn {
+        color: #212324;
+        background-color: #b9e529;
+        border-color: #b9e529;
+        padding: 0.5rem 1rem;
+        font-size: 1rem;
+        width: 10rem;
+      }
+      .cancel-btn {
+        color: #212324;
+        background-color: #b9e529;
+        border-color: #b9e529;
+        padding: 0.5rem 1rem;
+        font-size: 1rem;
+        width: 10rem;
+      }
+`
 
 const EditPlantForm = props => {
     const { push } = useHistory();
@@ -12,6 +71,7 @@ const EditPlantForm = props => {
         nickname:"",
         species:"",
         h2oFrequency:"",
+        img:""
     })
     useEffect(()=> {
         axios.get(`https://bw-water-my-plants-07-back-end.herokuapp.com/api/plants/${id}`)
@@ -36,14 +96,11 @@ const EditPlantForm = props => {
             push(`/plants-list/${id}`)
         })
     }
-    const { nickname, species, h2oFrequency } = plant
+    const { nickname, species, h2oFrequency, img } = plant
 
     return(
-        <div>
-            <form onSubmit={handleSubmit}>
-                <div className="form-header">
-                    <h3>Editing <strong>{plant.nickname}</strong></h3>
-                 </div>
+        <StyledEditForm>
+            <form onSubmit={handleSubmit} className="form-wrapper">
                  <div className="form-body">
                     <div className="form-group">
                         <label>Nickname: </label>
@@ -54,16 +111,32 @@ const EditPlantForm = props => {
                         <input value={species} onChange={handleChange} name="species" type="text" className="form-control"/>
                     </div>
                     <div className="form-group">
-                        <label>H2O Frequency: </label>
-                        <input value={h2oFrequency} onChange={handleChange} name="h2oFrequency" type="text" className="form-control"/>
+                        <label>H2O Frequency 
+                                <select className="dropdown" onChange={handleChange} name='h2oFrequency' value={h2oFrequency} className="form-control">
+                                    <option value=''>- Select an option -</option>
+                                    <option value='Everyday'>Everyday</option>
+                                    <option value='Every two days'>Every two days</option>
+                                    <option value='2 times per week'>2 times per week</option>
+                                    <option value='Once a week'>Once a week</option>
+                                    <option value='Every two weeks'>Every two weeks</option>
+                                    <option value='Once a month'>Once a month</option>
+                                </select>
+                            </label>
+                        {/* <input value={h2oFrequency} onChange={handleChange} name="h2oFrequency" type="text" className="form-control"/> */}
+                    </div>
+                    <div className="form-group">
+                        <label>Image link: </label>
+                        <input value={img} onChange={handleChange} name="img" type="text" className="form-control"/>
                     </div>
                  </div>
                  <div className="form-submit">
                     <input type="submit" className="submit-btn" value="Save"/>
-                    <Link to={`/plants-list/${id}`}><input type="button" className="cancel-btn" value="Cancel" /></Link>
+                    <Link to={`/plants-list/${id}`}>
+                        <input type="button" className="cancel-btn" value="Cancel" />
+                    </Link>
                  </div>
             </form>
-        </div>
+        </StyledEditForm>
         
     )
 }

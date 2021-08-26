@@ -1,14 +1,11 @@
-import axios from 'axios';
+import axios from "axios";
 
-const axiosWithAuth = () => {
-  const token = localStorage.getItem('token');
-
-  return axios.create({
-    headers: {
-      Authorization: token
-    },
-    baseURL:'https://bw-water-my-plants-07-back-end.herokuapp.com'
-  });
+export const axiosWithAuth = () => {
+    const token = window.localStorage.getItem('token')
+    return axios.create({
+        baseURL: 'https://bw-water-my-plants-07-back-end.herokuapp.com/api',      
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    });
 };
-
-export default axiosWithAuth;

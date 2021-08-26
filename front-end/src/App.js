@@ -167,16 +167,6 @@ function App() {
 
         <Switch>
 
-          {/* <PrivateRoute path="/edit-plant/:plantId" component={EditPlantForm} /> */}
-
-          {/* <PrivateRoute path="/plants/:plantId" component={Plant} /> */}
-
-          {/* <PrivateRoute path="/plants" component={PlantsList} /> */}
-
-          {/* <PrivateRoute path="/edit-plant/:plantId" component={EditPlantForm}/> */}
-
-          {/* <PrivateRoute path="/plants/:plantId" component={Plant}/>*/}
-
           <PrivateRoute path="/plants">
             <PlantsList plants={plants} />
           </PrivateRoute> 

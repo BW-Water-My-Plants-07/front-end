@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import axios from 'axios'
+import {axiosWithAuth} from '../utils/axiosWithAuth'
 import styled from 'styled-components';
 
 const StyledAddPlant = styled.div`
@@ -108,7 +108,8 @@ const AddPlantForm = props => {
     }
     const handleSubmit = e => {
         e.preventDefault()
-        axios.post("https://bw-water-my-plants-07-back-end.herokuapp.com/api/plants", plant)
+        axiosWithAuth()
+        .post("https://bw-water-my-plants-07-back-end.herokuapp.com/api/plants", plant)
             .then(res => {
                 console.log(res.data)
                 setPlants(res.data)

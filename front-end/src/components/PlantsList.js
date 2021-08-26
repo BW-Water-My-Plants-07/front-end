@@ -1,6 +1,7 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import { Link, useRouteMatch } from 'react-router-dom';
 import styled from 'styled-components';
+import {axiosWithAuth} from '../utils/axiosWithAuth'
 
 const StyledList = styled.div`
     .plants-list-wrapper {
@@ -40,9 +41,19 @@ const StyledList = styled.div`
 
 `
 function PlantsList(props) {
-    const { plants } = props;
+    const [plants, setPlants] = useState([]);
     const { url } = useRouteMatch();
-
+    useEffect(()=>{
+        axiosWithAuth()
+            .get(`/plants`)
+            .then(res=>{
+                setPlants(res.data)
+                console.log(res.data)
+            })
+            .catch(err=>{
+                console.log(err)
+            })
+    },[])
     return (
         <StyledList>
             <div className='plants-list-wrapper'>
@@ -51,15 +62,9 @@ function PlantsList(props) {
                         className='plant-card'
                         key={plant.id}
                     > 
-                        <Link to={`${url}/${plant.id}`}>
-                            {/* Keeping this commented in case we want to use images */}
-                            {/* <img
-                            className='plant-list-image'
-                            src={plant.imageURL}
-                            alt={plant.name}
-                        /> */}
+                        <Link to={`${url}/${plant.plant_id}`}>
                             <img className='plants-list-image'
-                                src={plant.img}
+                                src={plant.image}
                                 alt={plant.nickname}
                             />
                             <p>Name: {plant.nickname}</p>

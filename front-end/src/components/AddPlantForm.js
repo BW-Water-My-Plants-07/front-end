@@ -88,35 +88,45 @@ const StyledAddPlant = styled.div`
         }
     }  
 `
-
+const initialValues = {
+    nickname: "",
+    species: "",
+    h2oFrequency: "",
+    image:""
+}
 const AddPlantForm = props => {
-    const { push } = useHistory();
-    const { setPlants } = props;
+    const [plant, setPlant] = useState(initialValues)
 
-    const [plant, setPlant] = useState({
-        nickname: "",
-        species: "",
-        h2oFrequency: "",
-        img:""
-    })
-
-    const handleChange = (e) => {
+    const updateForm = (inputName, inputValue) => {
         setPlant({
             ...plant,
-            [e.target.name]: e.target.value
+            [inputName]: inputValue
         })
     }
-    const handleSubmit = e => {
-        e.preventDefault()
+    const submitForm = e => {
+        const newPlant ={
+            nickname: plant.nickname.trim(),
+            species: plant.species.trim(),
+            h2oFrequency: plant.h2oFrequency.trim(),
+            image: plant.image.trim()
+          }
         axiosWithAuth()
-        .post("https://bw-water-my-plants-07-back-end.herokuapp.com/api/plants", plant)
+        .post("https://bw-water-my-plants-07-back-end.herokuapp.com/api/plants", newPlant)
             .then(res => {
-                console.log(res.data)
-                setPlants(res.data)
-                push(`/plants`)
+                setPlant(res.data)
             })
     }
-    const { nickname, species, h2oFrequency, img } = plant
+    const history = useHistory()
+    
+    const onChange = e => {
+        const {name,value} = e.target
+        updateForm(name,value)
+    }
+    const onSubmit = e => {
+        e.preventDefault()
+        submitForm()
+        history.push('/plants')
+    }
 
     return (
         <StyledAddPlant>
@@ -124,22 +134,22 @@ const AddPlantForm = props => {
                 <div className="form-header">
                     <h2>Add a Plant</h2>
                 </div>
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={onSubmit}>
                     <div className="form-body">
                         <div className="form-group">
                             <label>Nickname </label>
-                            <input value={nickname} onChange={handleChange} name="nickname" type="text" className="form-control" />
+                            <input value={plant.nickname} onChange={onChange} name="nickname" type="text" className="form-control" />
                         </div>
                         <div className="form-group">
                             <label>Species </label>
-                            <input value={species} onChange={handleChange} name="species" type="text" className="form-control" />
+                            <input value={plant.species} onChange={onChange} name="species" type="text" className="form-control" />
                         </div>
 
                         <div className="form-group">
                             <label>H2O Frequency </label>
                             <select 
-                            value={h2oFrequency} 
-                            onChange={handleChange} 
+                            value={plant.h2oFrequency} 
+                            onChange={onChange} 
                             name="h2oFrequency" 
                             className="dropdown" >
                                 <option value=''>--Select Watering Frequency--</option>
@@ -154,7 +164,7 @@ const AddPlantForm = props => {
                         
                         <div className="form-group">
                             <label>Image link </label>
-                            <input value={img} onChange={handleChange} name="img" type="text" className="form-control" />
+                            <input value={plant.image} onChange={onChange} name="image" type="text" className="form-control" />
                         </div>
                     </div>
                     <div className="form-submit">

@@ -79,7 +79,7 @@ const StyledPlant = styled.div`
 
 function Plant(props) {
     //will need to get confirmation on what props are available or if need to build useState inside here
-    const { items, setPlant, deleteMovie } = props;
+    const { items, setPlant, deletePlant } = props;
 
     const { itemId } = useParams();
     // not sure if below is necessary
@@ -91,7 +91,7 @@ function Plant(props) {
     const handleDeleteClick = () => {
         axios.delete(`https://bw-water-my-plants-07-back-end.herokuapp.com/api/plants/${itemId}`)
             .then(res => {
-                deleteMovie(res.data)
+                deletePlant(res.data)
             })
             .catch(err => {
                 console.log(err)

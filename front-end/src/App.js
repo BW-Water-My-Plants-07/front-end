@@ -144,16 +144,14 @@ function App() {
   const [plants, setPlants] = useState([])
 
   useEffect(() => {
-  /**  commented out for testing without the back-end 
-    axios.get(" https://bw-water-my-plants-07-back-end.herokuapp.com/api/plants")
-      .then(res => {
-        setPlants(res.data)
-      })
-      .catch(err => {
-        console.log(err)
-      })
-    }, [plants])
-  **/
+    // commented out for testing without the back-end 
+    // axios.get(" https://bw-water-my-plants-07-back-end.herokuapp.com/api/plants")
+    //   .then(res => {
+    //     setPlants(res.data)
+    //   })
+    //   .catch(err => {
+    //     console.log(err)
+    //   })
       const data = [
         {id: 101, nickname:"Queeny Purple", species:"Alcea - Hollyhocks", h2oFrequency:"2 times per week", img:"https://www.gardenia.net/storage/app/public/uploads/images/detail/Alcea_Queeny_Purple_Bloom_20470Optimized.jpg"},
         {id: 102, nickname:"Joseph's Coat", species:"Alternanthera", h2oFrequency:"2 times per week", img:"https://www.gardenia.net/storage/app/public/uploads/images/detail/T7UxEvM92jaTjdWbVMusDT5lEbHmcqMqn5lpWuCX.jpeg"},
@@ -161,9 +159,7 @@ function App() {
         {id: 104, nickname:"Calanthe Takane", species:"Hardy Orchid", h2oFrequency:"2 times per week", img:"https://www.gardenia.net/storage/app/public/uploads/images/detail/JM19k1VX353dzdcdeMnexLSUcPrxNlEyGTgWS0R2.jpeg"},
       ];
       setPlants(data);
-  }, [])
-  
-  
+  }, [])  
 
   const logout = () => {
     localStorage.removeItem("token");

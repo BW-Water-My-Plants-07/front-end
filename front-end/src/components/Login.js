@@ -74,14 +74,13 @@ const StyledLogin = styled.div`
     letter-spacing: 1px;
   }
 `
-
+const initialValues = {
+  username: "",
+  password: "",
+}
 export default function Login(props) {
-  let history = useHistory()
-  const [user, setUser] = useState({
-    username: "",
-    password: "",
-  })
-
+  const {push} = useHistory()
+  const [user, setUser] = useState(initialValues)
   const [error, setError] = useState(
     ""
   );
@@ -97,8 +96,8 @@ export default function Login(props) {
     axios
       .post('https://bw-water-my-plants-07-back-end.herokuapp.com/api/auth/login', user)
       .then(res => {
-        localStorage.setItem("token", res.data)
-        history.push('/plants')
+        window.localStorage.setItem("token", res.data.token)
+        push('/plants')
       })
       .catch((err => {
         console.log(err)

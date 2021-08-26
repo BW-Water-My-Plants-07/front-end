@@ -73,39 +73,54 @@ const StyledSignUp = styled.div`
   letter-spacing: 1px;
 }
 `
-
+const initialValues = {
+  username:"",
+  phoneNumber:"",
+  password: ""
+}
 export default function SignUp(props) {
-    let history = useHistory()
-    const [user, setUser] = useState({
-      // Object user needs to be initialized to avoid warning from React
-        username:"",
-        phoneNumber:"",
-        password: ""
-      })
+    const [user, setUser] = useState(initialValues)
     
-      const [error, setError] = useState(
-        ""
-      );
-      const handleChange = e => {
+    const updateForm = (inputName, inputValue) => {
         setUser({
           ...user,
-          [e.target.name]: e.target.value
+          [inputName]: inputValue
         })
       }
-    
-      const handleSubmit = e =>{
-        e.preventDefault()
+
+    const submitForm = e =>{
+        const newUser ={
+          username: user.username.trim(),
+          password: user.password.trim(),
+          phoneNumber: user.phoneNumber.trim()
+        }
+        if(
+          newUser.username===""||
+          newUser.password===""||
+          newUser.phoneNumber===""
+          ){
+            return;
+          }
         axios
-         .post('https://bw-water-my-plants-07-back-end.herokuapp.com/api/auth/register')
+         .post('https://bw-water-my-plants-07-back-end.herokuapp.com/api/auth/register', newUser)
           .then(res=>{
-            console.log(res.data)
-            localStorage.setUser(res.data)
-            history.push('/profile')
+            setUser(newUser)
           })
           .catch(err=>{
             console.log(err)
-            setError("Error!")
           })
+      }
+      const history = useHistory()
+      
+      const onChange = e => {
+        const {name,value} = e.target
+        updateForm(name,value)
+      }
+      
+      const onSubmit = e => {
+        e.preventDefault()
+        submitForm()
+        history.push('/login')
       }
       return (
         <StyledSignUp>
@@ -121,7 +136,7 @@ export default function SignUp(props) {
               </p>
             </div>
             <div className='form-container'>
-              <form onSubmit={handleSubmit} className="signup-form">
+              <form onSubmit={onSubmit} className="signup-form">
                 <label>
                   Username
                   <input
@@ -129,8 +144,8 @@ export default function SignUp(props) {
                     type="text"
                     id="username"
                     value={user.username}
-                    onChange={handleChange}
-                    // placeholder="--- enter a username ---"
+                    onChange={onChange}
+
                   />
                 </label>
                 <label>
@@ -140,8 +155,7 @@ export default function SignUp(props) {
                     type="tel"
                     id="phone-number"
                     value={user.phoneNumber}
-                    onChange={handleChange}
-                    // placeholder="--- enter your phone number ---"
+                    onChange={onChange}
                   />
                 </label>
                 <label>
@@ -151,15 +165,15 @@ export default function SignUp(props) {
                     type="password"
                     id="password"
                     value={user.password}
-                    onChange={handleChange}
+                    onChange={onChange}
                     // placeholder="--- password ---"
                   />
                 </label>
-                <button id="submit" type="submit" onClick={handleSubmit}>
+                <button id="submit" type="submit">
                   Sign-Up
                 </button>
               </form>
-              <p id="error" className="error">{error}</p>
+             
             </div>
           </div>
         </StyledSignUp>

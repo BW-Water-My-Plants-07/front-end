@@ -38,6 +38,7 @@ const StyledEditForm = styled.div`
         padding: 1rem 3.6rem;
         margin: 0.5rem 0 1.8rem 0;
         box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        text-align: center;
       }
       .form-submit {
           display: flex;
@@ -68,76 +69,76 @@ const EditPlantForm = props => {
     const { setPlants } = props;
 
     const [plant, setPlant] = useState({
-        nickname:"",
-        species:"",
-        h2oFrequency:"",
-        img:""
+        nickname: "",
+        species: "",
+        h2oFrequency: "",
+        img: ""
     })
-    useEffect(()=> {
+    useEffect(() => {
         axios.get(`https://bw-water-my-plants-07-back-end.herokuapp.com/api/plants/${id}`)
-        .then(res=>{
-            setPlant(id)
-        })
-        .catch(err =>{
-            console.log(err)
-        })
-    },[id])
-    const handleChange = (e) =>{
+            .then(res => {
+                setPlant(id)
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    }, [id])
+    const handleChange = (e) => {
         setPlant({
             ...plant,
             [e.target.name]: e.target.value
         })
     }
-    const handleSubmit = e =>{
+    const handleSubmit = e => {
         e.preventDefault()
         axios.put(`https://bw-water-my-plants-07-back-end.herokuapp.com/api/plants/${id}`, plant)
-        .then(res=>{
-            setPlants(res.data)
-            push(`/plants-list/${id}`)
-        })
+            .then(res => {
+                setPlants(res.data)
+                push(`/plants-list/${id}`)
+            })
     }
     const { nickname, species, h2oFrequency, img } = plant
 
-    return(
+    return (
         <StyledEditForm>
             <form onSubmit={handleSubmit} className="form-wrapper">
-                 <div className="form-body">
+                <div className="form-body">
                     <div className="form-group">
-                        <label>Nickname: </label>
-                        <input value={nickname} onChange={handleChange} name="nickname" type="text" className="form-control"/>
+                        <label>Nickname </label>
+                        <input value={nickname} onChange={handleChange} name="nickname" type="text" className="form-control" />
                     </div>
                     <div className="form-group">
-                        <label>Species: </label>
-                        <input value={species} onChange={handleChange} name="species" type="text" className="form-control"/>
+                        <label>Species </label>
+                        <input value={species} onChange={handleChange} name="species" type="text" className="form-control" />
                     </div>
                     <div className="form-group">
-                        <label>H2O Frequency 
-                                <select className="dropdown" onChange={handleChange} name='h2oFrequency' value={h2oFrequency} className="form-control">
-                                    <option value=''>- Select an option -</option>
-                                    <option value='Everyday'>Everyday</option>
-                                    <option value='Every two days'>Every two days</option>
-                                    <option value='2 times per week'>2 times per week</option>
-                                    <option value='Once a week'>Once a week</option>
-                                    <option value='Every two weeks'>Every two weeks</option>
-                                    <option value='Once a month'>Once a month</option>
-                                </select>
-                            </label>
-                        {/* <input value={h2oFrequency} onChange={handleChange} name="h2oFrequency" type="text" className="form-control"/> */}
+                        <label>H2O Frequency
+                            <select className="dropdown" onChange={handleChange} name='h2oFrequency' value={h2oFrequency}>
+                                <option value=''>- Select an option -</option>
+                                <option value='Everyday'>Everyday</option>
+                                <option value='Every two days'>Every two days</option>
+                                <option value='2 times per week'>2 times per week</option>
+                                <option value='Once a week'>Once a week</option>
+                                <option value='Every two weeks'>Every two weeks</option>
+                                <option value='Once a month'>Once a month</option>
+                            </select>
+                        </label>
+                        {/* <input value={h2oFrequency} onChange={handleChange} name="h2oFrequency" type="text" className="form-control" /> */}
                     </div>
                     <div className="form-group">
-                        <label>Image link: </label>
-                        <input value={img} onChange={handleChange} name="img" type="text" className="form-control"/>
+                        <label>Image link </label>
+                        <input value={img} onChange={handleChange} name="img" type="text" className="form-control" />
                     </div>
-                 </div>
-                 <div className="form-submit">
-                    <input type="submit" className="submit-btn" value="Save"/>
+                </div>
+                <div className="form-submit">
+                    <input type="submit" className="submit-btn" value="Save" />
                     <Link to={`/plants-list/${id}`}>
                         <input type="button" className="cancel-btn" value="Cancel" />
                     </Link>
-                 </div>
+                </div>
             </form>
         </StyledEditForm>
-        
+
     )
 }
 export default EditPlantForm

@@ -48,7 +48,6 @@ const StyledAddPlant = styled.div`
                 padding: 1rem 3.6rem;
                 margin: 0.5rem 0 1.8rem 0;
                 box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-                
               }
         }
         .submit-btn {

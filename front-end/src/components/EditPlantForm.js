@@ -2,6 +2,55 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import axios from 'axios'
+import styled from 'styled-components';
+
+const StyledEditForm = styled.div`
+    .form-wrapper {
+        margin: 4rem 0;
+        font-size: 1rem;
+        font-weight: 200;
+        letter-spacing: 1px;
+    }
+
+    .form-body {
+        display: flex;
+        flex-direction: column;
+        margin: 2rem;
+        width: 20rem;
+      }
+      label {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        margin: 1rem 0;
+      }
+      input {
+        width: 100%;
+        padding: 0.5rem;
+        box-sizing: border-box;
+      }
+      .form-submit {
+          display: flex;
+          width: 80%;
+          justify-content: space-evenly;
+      }
+      .submit-btn {
+        color: #212324;
+        background-color: #b9e529;
+        border-color: #b9e529;
+        padding: 0.5rem 1rem;
+        font-size: 1rem;
+        width: 10rem;
+      }
+      .cancel-btn {
+        color: #212324;
+        background-color: #b9e529;
+        border-color: #b9e529;
+        padding: 0.5rem 1rem;
+        font-size: 1rem;
+        width: 10rem;
+      }
+`
 
 const EditPlantForm = props => {
     const { push } = useHistory();
@@ -39,8 +88,8 @@ const EditPlantForm = props => {
     const { nickname, species, h2oFrequency } = plant
 
     return(
-        <div>
-            <form onSubmit={handleSubmit}>
+        <StyledEditForm>
+            <form onSubmit={handleSubmit} className="form-wrapper">
                 <div className="form-header">
                     <h3>Editing <strong>{plant.nickname}</strong></h3>
                  </div>
@@ -60,10 +109,12 @@ const EditPlantForm = props => {
                  </div>
                  <div className="form-submit">
                     <input type="submit" className="submit-btn" value="Save"/>
-                    <Link to={`/plants-list/${id}`}><input type="button" className="cancel-btn" value="Cancel" /></Link>
+                    <Link to={`/plants-list/${id}`}>
+                        <input type="button" className="cancel-btn" value="Cancel" />
+                    </Link>
                  </div>
             </form>
-        </div>
+        </StyledEditForm>
         
     )
 }

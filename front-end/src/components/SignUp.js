@@ -22,32 +22,14 @@ const StyledSignUp = styled.div`
   button {
     margin-left: 10px;
   }
-  .fill {
+  .switch {
+    border: none;
+    background: none;
     font-size: 1rem;
-    font-weight: 200;
-    letter-spacing: 1px;
-    padding: 13px 50px 13px;
-    outline: 0;
-    border: 1px solid black;
     cursor: pointer;
-    position: relative;
-    background-color: rgba(0, 0, 0, 0);
   }
-  .fill::after {
-    content: "";
-    background-color: #90CAF9;
-    opacity: 0.7;
-    width: 100%;
-    z-index: -1;
-    position: absolute;
-    height: 100%;
-    top: 7px;
-    left: 7px;
-    transition: 0.5s;
-  }
-  .fill:hover::after {
-    top: 0px;
-    left: 0px;
+  .switch:hover {
+    text-decoration: underline;
   }
 }
 .form-container {
@@ -95,9 +77,10 @@ const StyledSignUp = styled.div`
 export default function SignUp(props) {
     let history = useHistory()
     const [user, setUser] = useState({
-        // username:"",
-        // phoneNumber:"",
-        // password: "",
+      // Object user needs to be initialized to avoid warning from React
+        username:"",
+        phoneNumber:"",
+        password: ""
       })
     
       const [error, setError] = useState(
@@ -131,7 +114,7 @@ export default function SignUp(props) {
               <h2>Create your account</h2>
               <p>Do you already have an account?
                   <Link to={`/login`}>
-                    <button type='button' className='fill'>
+                    <button type='button' className='switch'>
                       Log In
                     </button>
                   </Link>

@@ -105,7 +105,7 @@ const StyledHome = styled.div`
 export default function Home() {
     const history = useHistory()
     const routeToSignUp = () => history.push('/register');
-    const routeToPlants = () => history.push('/plants-list')
+    const routeToPlants = () => history.push('/plants')
     return (
         <StyledHome>
             <div className='home-wrapper'>

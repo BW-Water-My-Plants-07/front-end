@@ -54,6 +54,8 @@ function PlantsList(props) {
                 console.log(err)
             })
     },[])
+
+    console.log('testing',plants[0])
     return (
         <StyledList>
             <div className='plants-list-wrapper'>

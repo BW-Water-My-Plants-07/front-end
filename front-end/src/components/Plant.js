@@ -1,29 +1,22 @@
 import axios from 'axios';
 import React from 'react'
 
-import {
-    useParams,
-    Link,
-    // useRouteMatch,
-    // Route,
-    // Switch,
-    // NavLink
-} from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 
 function Plant(props){
     //will need to get confirmation on what props are available or if need to build useState inside here
-    const { items, deletePlant } = props;
+    const { plants, deletePlant } = props;
 
-    const {itemId} = useParams();
+    const {plantId} = useParams();
     // not sure if below is necessary
     // const { path, url } = useRouteMatch();
 
-    const plant = items.find(item => item.id === parseInt(itemId))
+    const plant = plants.find(plant => plant.id === parseInt(plantId))
 
     if(!plant) return 'Plant not found...'
 
     const handleDeleteClick= ()=>{
-        axios.delete(`https://bw-water-my-plants-07-back-end.herokuapp.com/api/plants/${itemId}`)
+        axios.delete(`https://bw-water-my-plants-07-back-end.herokuapp.com/api/plants/${plantId}`)
             .then(res=>{
                 deletePlant(res.data)
             })
@@ -52,7 +45,7 @@ function Plant(props){
                         onClick={handleDeleteClick}
                     />
                 </span>
-                <Link className="edit-btn" to={`/edit-plant/${itemId}`}>
+                <Link className="edit-btn" to={`/edit-plant/${plantId}`}>
                 Edit Plant
                 </Link>
             </div>

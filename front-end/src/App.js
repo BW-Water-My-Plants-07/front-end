@@ -140,12 +140,12 @@ function scrollFunction() {
 }
 
 function App() {
-  // const [stock, setStock] = useState([])
   const [plants, setPlants] = useState([])
 
   useEffect(() => {
-    axios.get(" https://bw-water-my-plants-07-back-end.herokuapp.com/api/plants")
+    axios.get("https://bw-water-my-plants-07-back-end.herokuapp.com/api/plants")
       .then(res => {
+        console.log('testing', res)
         setPlants(res.data)
       })
       .catch(err => {
@@ -180,7 +180,9 @@ function App() {
         <Switch>
           <PrivateRoute path="/edit-plant/:plantId" component={EditPlantForm}/>
 
-          <PrivateRoute path="/plants/:plantId" component={Plant}/>
+          <PrivateRoute path="/plants/:plantId">
+            <Plant plants={plants} />
+          </PrivateRoute>
 
           <PrivateRoute path="/plants">
             <PlantsList plants={plants} />

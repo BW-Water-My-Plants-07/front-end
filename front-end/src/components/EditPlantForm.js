@@ -66,7 +66,7 @@ const StyledEditForm = styled.div`
 const EditPlantForm = props => {
     const { push } = useHistory();
     const { id } = useParams();
-    const { setPlants } = props;
+    const { setPlants, plantId } = props;
 
     const [plant, setPlant] = useState({
         nickname: "",
@@ -136,7 +136,7 @@ const EditPlantForm = props => {
                 </div>
                 <div className="form-submit">
                     <input type="submit" className="submit-btn" value="Save" />
-                    <Link to={`/plants-list/${id}`}>
+                    <Link to={`/plants/${plantId}`}>
                         <input type="button" className="cancel-btn" value="Cancel" />
                     </Link>
                 </div>

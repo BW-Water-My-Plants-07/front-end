@@ -78,10 +78,8 @@ const StyledPlant = styled.div`
 `
 
 function Plant(props) {
-    //will need to get confirmation on what props are available or if need to build useState inside here
     const { plants, setPlants, deletePlant } = props;
     const { plantId } = useParams();
-    // not sure if below is necessary
     const { url } = useRouteMatch();
     const plant = plants.find(plant => plant.id === parseInt(plantId))
 
@@ -105,8 +103,6 @@ function Plant(props) {
                         <img src={plant.img} alt={plant.nickname} />
                     </div>
                     <div className='plant-title-wrapper'>
-                        {/* This is if we want to add an image for stretch */}
-                        {/* <img src='' alt={plant.species} /> */}
                         <div className='details'>
                             <div className='detail top'>
                                 <h4>Species:</h4>

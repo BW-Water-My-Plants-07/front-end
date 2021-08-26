@@ -5,6 +5,7 @@ import { useParams, Link } from 'react-router-dom';
 
 function Plant(props){
     //will need to get confirmation on what props are available or if need to build useState inside here
+    //where is deletePlant coming from?
     const { plants, deletePlant } = props;
 
     const {plantId} = useParams();

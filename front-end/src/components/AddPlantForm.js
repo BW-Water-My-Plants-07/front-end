@@ -127,10 +127,33 @@ const AddPlantForm = props => {
                             <label>Species </label>
                             <input value={species} onChange={handleChange} name="species" type="text" className="form-control" />
                         </div>
+
                         <div className="form-group">
                             <label>H2O Frequency </label>
-                            <input value={h2oFrequency} onChange={handleChange} name="h2oFrequency" type="text" className="form-control" />
+                            <select 
+                            value={h2oFrequency} 
+                            onChange={handleChange} 
+                            name="h2oFrequency" 
+                            className="form-control" >
+                                <option value=''>--Select Watering Frequency--</option>
+                                <option value='none'>None</option>
+                                <option value='daily'>Daily</option>
+                                <option value='twice a week'>Twice a Week</option>
+                                <option value='weekly'>Weekly</option>
+                                <option value='every two weeks'>Every Two Weeks</option>
+                                <option value='every three weeks'>Every Three Weeks</option>
+                            </select>
                         </div>
+
+                        {/* <div className="form-group">
+                            <label>H2O Frequency </label>
+                            <input 
+                            value={h2oFrequency} 
+                            onChange={handleChange} 
+                            name="h2oFrequency" 
+                            type="text" 
+                            className="form-control" />
+                        </div> */}
                     </div>
                     <div className="form-submit">
                         <input type="submit" className="submit-btn" value="Save" />

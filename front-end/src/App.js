@@ -188,7 +188,9 @@ function App() {
             <PlantsList plants={plants} />
           </PrivateRoute>
 
-          <PrivateRoute path="/add-plant" component={AddPlantForm}/>
+          <PrivateRoute path="/add-plant" >
+            <AddPlantForm setPlants={setPlants} />
+          </PrivateRoute>
 
           <PrivateRoute path="/profile" component={ProfilePage}/>
 
@@ -196,13 +198,13 @@ function App() {
             <Login />
           </Route>
 
-<Route path="/register">
-  <SignUp />
-</Route>
+          <Route path="/register">
+            <SignUp />
+          </Route>
 
-<Route path="/">
-  <Home />
-</Route>
+          <Route path="/">
+            <Home />
+          </Route>
 
         </Switch>
 

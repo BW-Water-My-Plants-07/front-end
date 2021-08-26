@@ -37,18 +37,17 @@ const StyledAddPlant = styled.div`
                 margin-bottom: 0.2rem;
               }  
               input {
-                width: 100%;
+                width: 130%;
                 padding: 1rem 2rem;
                 margin: 0.5rem 0;
                 box-sizing: border-box;
                 margin-bottom: 2rem;
               }
               .dropdown {
-                width: 100%;
+                width: 130%;
                 padding: 1rem 3.6rem;
                 margin: 0.5rem 0 1.8rem 0;
                 box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-                
               }
         }
         .submit-btn {
@@ -141,7 +140,7 @@ const AddPlantForm = props => {
                             value={h2oFrequency} 
                             onChange={handleChange} 
                             name="h2oFrequency" 
-                            className="form-control" >
+                            className="dropdown" >
                                 <option value=''>--Select Watering Frequency--</option>
                                 <option value='none'>None</option>
                                 <option value='daily'>Daily</option>

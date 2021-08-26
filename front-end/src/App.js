@@ -187,15 +187,24 @@ function App() {
         </header>
 
         <Switch>
+
           {/* <PrivateRoute path="/edit-plant/:plantId" component={EditPlantForm} /> */}
 
           {/* <PrivateRoute path="/plants/:plantId" component={Plant} /> */}
 
           {/* <PrivateRoute path="/plants" component={PlantsList} /> */}
 
-          <PrivateRoute path="/add-plant" component={AddPlantForm} />
+          <PrivateRoute path="/edit-plant/:plantId" component={EditPlantForm}/>
 
-          <PrivateRoute path="/profile" component={ProfilePage} />
+          <PrivateRoute path="/plants/:plantId" component={Plant}/>
+
+          <PrivateRoute path="/plants">
+            <PlantsList plants={plants} />
+          </PrivateRoute>
+
+          <PrivateRoute path="/add-plant" component={AddPlantForm}/>
+
+          <PrivateRoute path="/profile" component={ProfilePage}/>
 
           <Route path="/plants/:itemId">
             <Plant items={plants} setPlants={setPlants}/>
@@ -209,13 +218,13 @@ function App() {
             <Login />
           </Route>
 
-          <Route path="/register">
-            <SignUp />
-          </Route>
+<Route path="/register">
+  <SignUp />
+</Route>
 
-          <Route path="/">
-            <Home />
-          </Route>
+<Route path="/">
+  <Home />
+</Route>
 
         </Switch>
 

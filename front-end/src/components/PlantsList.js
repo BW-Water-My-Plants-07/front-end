@@ -40,7 +40,7 @@ const StyledList = styled.div`
 
 `
 function PlantsList(props) {
-    const { items } = props;
+    const { plants } = props;
     const { url } = useRouteMatch();
 
     return (

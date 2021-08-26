@@ -80,7 +80,6 @@ const StyledPlant = styled.div`
 function Plant(props) {
     //will need to get confirmation on what props are available or if need to build useState inside here
     const { items, setPlant, deletePlant } = props;
-
     const { itemId } = useParams();
     // not sure if below is necessary
     const { path, url } = useRouteMatch();

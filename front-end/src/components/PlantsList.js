@@ -46,7 +46,7 @@ function PlantsList(props) {
     return (
         <StyledList>
             <div className='plants-list-wrapper'>
-                {items.map(plant => (
+                {plants.map(plant => (
                     <div
                         className='plant-card'
                         key={plant.id}

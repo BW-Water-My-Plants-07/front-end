@@ -194,7 +194,7 @@ function App() {
 
           {/* <PrivateRoute path="/plants" component={PlantsList} /> */}
 
-          <PrivateRoute path="/edit-plant/:plantId" component={EditPlantForm}/>
+          {/* <PrivateRoute path="/edit-plant/:plantId" component={EditPlantForm}/> */}
 
           <PrivateRoute path="/plants/:plantId" component={Plant}/>
 
@@ -202,12 +202,14 @@ function App() {
             <PlantsList plants={plants} />
           </PrivateRoute>
 
-          <PrivateRoute path="/add-plant" component={AddPlantForm}/>
+          <PrivateRoute path="/add-plant" >
+            <AddPlantForm setPlants={setPlants} />
+          </PrivateRoute>
 
           <PrivateRoute path="/profile" component={ProfilePage}/>
 
           <Route path="/plants/:itemId">
-            <Plant items={plants} setPlants={setPlants}/>
+            <Plant plants={plants} setPlants={setPlants}/>
           </Route>
           
           <Route path="/plants">

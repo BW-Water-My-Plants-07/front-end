@@ -134,20 +134,24 @@ const AddPlantForm = props => {
                             <label>Species </label>
                             <input value={species} onChange={handleChange} name="species" type="text" className="form-control" />
                         </div>
+
                         <div className="form-group">
-                            <label>H2O Frequency 
-                                <select className="dropdown" onChange={handleChange} name='h2oFrequency' value={h2oFrequency}>
-                                    <option value=''>- Select an option -</option>
-                                    <option value='Everyday'>Everyday</option>
-                                    <option value='Every two days'>Every two days</option>
-                                    <option value='2 times per week'>2 times per week</option>
-                                    <option value='Once a week'>Once a week</option>
-                                    <option value='Every two weeks'>Every two weeks</option>
-                                    <option value='Once a month'>Once a month</option>
-                                </select>
-                            </label>
-                            {/* <input value={h2oFrequency} onChange={handleChange} name="h2oFrequency" type="text" className="form-control" /> */}
+                            <label>H2O Frequency </label>
+                            <select 
+                            value={h2oFrequency} 
+                            onChange={handleChange} 
+                            name="h2oFrequency" 
+                            className="form-control" >
+                                <option value=''>--Select Watering Frequency--</option>
+                                <option value='none'>None</option>
+                                <option value='daily'>Daily</option>
+                                <option value='twice a week'>Twice a Week</option>
+                                <option value='weekly'>Weekly</option>
+                                <option value='every two weeks'>Every Two Weeks</option>
+                                <option value='every three weeks'>Every Three Weeks</option>
+                            </select>
                         </div>
+                        
                         <div className="form-group">
                             <label>Image link </label>
                             <input value={img} onChange={handleChange} name="img" type="text" className="form-control" />

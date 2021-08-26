@@ -75,7 +75,6 @@ const StyledPlant = styled.div`
         background: #c0392b;
         color: #fff;
     }
-      
 `
 
 function Plant(props) {

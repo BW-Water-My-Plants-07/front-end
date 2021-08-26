@@ -92,6 +92,7 @@ const AddPlantForm = props => {
         nickname: "",
         species: "",
         h2oFrequency: "",
+        img:""
     })
 
     const handleChange = (e) => {
@@ -108,7 +109,7 @@ const AddPlantForm = props => {
                 push(`/plants-list`)
             })
     }
-    const { nickname, species, h2oFrequency } = plant
+    const { nickname, species, h2oFrequency, img } = plant
 
     return (
         <StyledAddPlant>
@@ -129,6 +130,10 @@ const AddPlantForm = props => {
                         <div className="form-group">
                             <label>H2O Frequency </label>
                             <input value={h2oFrequency} onChange={handleChange} name="h2oFrequency" type="text" className="form-control" />
+                        </div>
+                        <div className="form-group">
+                            <label>Image link </label>
+                            <input value={img} onChange={handleChange} name="img" type="text" className="form-control" />
                         </div>
                     </div>
                     <div className="form-submit">

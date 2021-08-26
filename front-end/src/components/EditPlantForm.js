@@ -61,6 +61,7 @@ const EditPlantForm = props => {
         nickname:"",
         species:"",
         h2oFrequency:"",
+        img:""
     })
     useEffect(()=> {
         axios.get(`https://bw-water-my-plants-07-back-end.herokuapp.com/api/plants/${id}`)
@@ -85,7 +86,7 @@ const EditPlantForm = props => {
             push(`/plants-list/${id}`)
         })
     }
-    const { nickname, species, h2oFrequency } = plant
+    const { nickname, species, h2oFrequency, img } = plant
 
     return(
         <StyledEditForm>
@@ -105,6 +106,10 @@ const EditPlantForm = props => {
                     <div className="form-group">
                         <label>H2O Frequency: </label>
                         <input value={h2oFrequency} onChange={handleChange} name="h2oFrequency" type="text" className="form-control"/>
+                    </div>
+                    <div className="form-group">
+                        <label>Image link: </label>
+                        <input value={img} onChange={handleChange} name="img" type="text" className="form-control"/>
                     </div>
                  </div>
                  <div className="form-submit">

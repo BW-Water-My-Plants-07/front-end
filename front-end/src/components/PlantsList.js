@@ -52,12 +52,6 @@ function PlantsList(props) {
                         key={plant.id}
                     > 
                         <Link to={`${url}/${plant.id}`}>
-                            {/* Keeping this commented in case we want to use images */}
-                            {/* <img
-                            className='plant-list-image'
-                            src={plant.imageURL}
-                            alt={plant.name}
-                        /> */}
                             <img className='plants-list-image'
                                 src={plant.img}
                                 alt={plant.nickname}

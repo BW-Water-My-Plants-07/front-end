@@ -187,35 +187,46 @@ function App() {
         </header>
 
         <Switch>
+
           {/* <PrivateRoute path="/edit-plant/:plantId" component={EditPlantForm} /> */}
 
           {/* <PrivateRoute path="/plants/:plantId" component={Plant} /> */}
 
           {/* <PrivateRoute path="/plants" component={PlantsList} /> */}
 
-          <PrivateRoute path="/add-plant" component={AddPlantForm} />
+          {/* <PrivateRoute path="/edit-plant/:plantId" component={EditPlantForm}/> */}
 
-          <PrivateRoute path="/profile" component={ProfilePage} />
+          {/* <PrivateRoute path="/plants/:plantId" component={Plant}/>
 
-          <Route path="/plants/:itemId">
-            <Plant items={plants} setPlants={setPlants}/>
+          <PrivateRoute path="/plants">
+            <PlantsList plants={plants} />
+          </PrivateRoute> */}
+
+          <PrivateRoute path="/add-plant" >
+            <AddPlantForm setPlants={setPlants} />
+          </PrivateRoute>
+
+          <PrivateRoute path="/profile" component={ProfilePage}/>
+
+          <Route path="/plants/:plantId">
+            <Plant plants={plants} setPlants={setPlants}/>
           </Route>
           
           <Route path="/plants">
-            <PlantsList items={plants} />
+            <PlantsList plants={plants} />
           </Route>
 
           <Route path="/login">
             <Login />
           </Route>
 
-          <Route path="/register">
-            <SignUp />
-          </Route>
+<Route path="/register">
+  <SignUp />
+</Route>
 
-          <Route path="/">
-            <Home />
-          </Route>
+<Route path="/">
+  <Home />
+</Route>
 
         </Switch>
 

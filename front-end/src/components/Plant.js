@@ -79,22 +79,21 @@ const StyledPlant = styled.div`
 
 function Plant(props) {
     //will need to get confirmation on what props are available or if need to build useState inside here
-    const { items, setPlant, deletePlant } = props;
-
-    const { itemId } = useParams();
+    const { plants, setPlant, deletePlant } = props;
+    const { plantId } = useParams();
     // not sure if below is necessary
     const { path, url } = useRouteMatch();
-    const plant = items.find(plant => plant.id === parseInt(itemId))
+    const plant = plants.find(plant => plant.id === parseInt(plantId))
 
     if (!plant) return 'Plant not found...'
 
     const handleDeleteClick = () => {
-        axios.delete(`https://bw-water-my-plants-07-back-end.herokuapp.com/api/plants/${itemId}`)
+        axios.delete(`https://bw-water-my-plants-07-back-end.herokuapp.com/api/plants/${plantId}`)
             .then(res => {
                 deletePlant(res.data)
             })
             .catch(err => {
-                console.log(err)
+                console.error(err)
             })
     }
 
@@ -108,7 +107,6 @@ function Plant(props) {
                     <div className='plant-title-wrapper'>
                         {/* This is if we want to add an image for stretch */}
                         {/* <img src='' alt={plant.species} /> */}
-                        {/* <h2>{if plant.nickname ? plant.nickname : plant.species}</h2> */}
                         <div className='details'>
                             <div className='detail top'>
                                 <h4>Species:</h4>
@@ -120,10 +118,10 @@ function Plant(props) {
                             </div>
                         </div>
 
-                        <Link className="edit-btn" to={`${url}/edit-plant/${itemId}`}>
+                        <Link className="edit-btn" to={`${url}/edit-plant/${plantId}`}>
                             Edit Plant
                         </Link>
-                        <Route path={`${url}/edit-plant/${itemId}`}>
+                        <Route path={`${url}/edit-plant/${plantId}`}>
                             <EditPlantForm setPlant={setPlant} />
                         </Route>
                     </div>

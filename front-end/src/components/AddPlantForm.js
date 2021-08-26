@@ -37,14 +37,14 @@ const StyledAddPlant = styled.div`
                 margin-bottom: 0.2rem;
               }  
               input {
-                width: 100%;
+                width: 130%;
                 padding: 1rem 2rem;
                 margin: 0.5rem 0;
                 box-sizing: border-box;
                 margin-bottom: 2rem;
               }
               .dropdown {
-                width: 100%;
+                width: 130%;
                 padding: 1rem 3.6rem;
                 margin: 0.5rem 0 1.8rem 0;
                 box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
@@ -110,8 +110,9 @@ const AddPlantForm = props => {
         e.preventDefault()
         axios.post("https://bw-water-my-plants-07-back-end.herokuapp.com/api/plants", plant)
             .then(res => {
+                console.log(res.data)
                 setPlants(res.data)
-                push(`/plants-list`)
+                push(`/plants`)
             })
     }
     const { nickname, species, h2oFrequency, img } = plant
@@ -120,7 +121,7 @@ const AddPlantForm = props => {
         <StyledAddPlant>
             <div className='form-wrapper'>
                 <div className="form-header">
-                    <h2>Add a Plant<strong>{plant.nickname}</strong></h2>
+                    <h2>Add a Plant</h2>
                 </div>
                 <form onSubmit={handleSubmit}>
                     <div className="form-body">
@@ -132,20 +133,24 @@ const AddPlantForm = props => {
                             <label>Species </label>
                             <input value={species} onChange={handleChange} name="species" type="text" className="form-control" />
                         </div>
+
                         <div className="form-group">
-                            <label>H2O Frequency 
-                                <select className="dropdown" onChange={handleChange} name='h2oFrequency' value={h2oFrequency}>
-                                    <option value=''>- Select an option -</option>
-                                    <option value='Everyday'>Everyday</option>
-                                    <option value='Every two days'>Every two days</option>
-                                    <option value='2 times per week'>2 times per week</option>
-                                    <option value='Once a week'>Once a week</option>
-                                    <option value='Every two weeks'>Every two weeks</option>
-                                    <option value='Once a month'>Once a month</option>
-                                </select>
-                            </label>
-                            {/* <input value={h2oFrequency} onChange={handleChange} name="h2oFrequency" type="text" className="form-control" /> */}
+                            <label>H2O Frequency </label>
+                            <select 
+                            value={h2oFrequency} 
+                            onChange={handleChange} 
+                            name="h2oFrequency" 
+                            className="dropdown" >
+                                <option value=''>--Select Watering Frequency--</option>
+                                <option value='none'>None</option>
+                                <option value='daily'>Daily</option>
+                                <option value='twice a week'>Twice a Week</option>
+                                <option value='weekly'>Weekly</option>
+                                <option value='every two weeks'>Every Two Weeks</option>
+                                <option value='every three weeks'>Every Three Weeks</option>
+                            </select>
                         </div>
+                        
                         <div className="form-group">
                             <label>Image link </label>
                             <input value={img} onChange={handleChange} name="img" type="text" className="form-control" />

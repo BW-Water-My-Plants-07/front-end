@@ -40,13 +40,13 @@ const StyledList = styled.div`
 
 `
 function PlantsList(props) {
-    const { items } = props;
+    const { plants } = props;
     const { url } = useRouteMatch();
 
     return (
         <StyledList>
             <div className='plants-list-wrapper'>
-                {items.map(plant => (
+                {plants.map(plant => (
                     <div
                         className='plant-card'
                         key={plant.id}

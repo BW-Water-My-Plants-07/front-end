@@ -79,10 +79,10 @@ const StyledPlant = styled.div`
 
 function Plant(props) {
     //will need to get confirmation on what props are available or if need to build useState inside here
-    const { plants, setPlant, deletePlant } = props;
+    const { plants, setPlants, deletePlant } = props;
     const { plantId } = useParams();
     // not sure if below is necessary
-    const { path, url } = useRouteMatch();
+    const { url } = useRouteMatch();
     const plant = plants.find(plant => plant.id === parseInt(plantId))
 
     if (!plant) return 'Plant not found...'
@@ -122,7 +122,7 @@ function Plant(props) {
                             Edit Plant
                         </Link>
                         <Route path={`${url}/edit-plant/${plantId}`}>
-                            <EditPlantForm setPlant={setPlant} plantId={plantId} />
+                            <EditPlantForm setPlant={setPlants} plantId={plantId} />
                         </Route>
                     </div>
                     <button 

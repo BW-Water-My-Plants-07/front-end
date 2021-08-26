@@ -140,7 +140,6 @@ function scrollFunction() {
 }
 
 function App() {
-  // const [stock, setStock] = useState([])
   const [plants, setPlants] = useState([])
 
   useEffect(() => {

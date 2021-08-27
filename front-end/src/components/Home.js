@@ -105,8 +105,7 @@ export default function Home() {
                         src='https://images.unsplash.com/photo-1592296429945-93008c7e5a59?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1352&q=80'
                         alt='Green leaves' />
                     <p>
-                        Never forget when it's time to feed your foliage and quench your
-                        plants' thirst.
+                        Never forget when to feed your foliage and quench your plants' thirst.
                     </p>
                     <button
                         onClick={routeToPlants}

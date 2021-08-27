@@ -1,6 +1,4 @@
-import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
 import {axiosWithAuth} from '../utils/axiosWithAuth'
 import styled from 'styled-components';
 
@@ -36,7 +34,6 @@ const StyledProfile = styled.div`
 `
 
 export default function ProfilePage() {
-    const { id } = useParams()
     const [user, setUser] = useState({
         username: "",
         phoneNumber: "",
@@ -63,8 +60,7 @@ export default function ProfilePage() {
                     <h3>Username: <span>{user.username}</span></h3>
                 </div>
             </div>
-
-
+            
         </StyledProfile>
     )
 }

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Route, Link, Switch } from 'react-router-dom';
 import Home from './components/Home'
 import Login from './components/Login';
@@ -139,7 +139,6 @@ function scrollFunction() {
 }
 
 function App() {
-  const [plants, setPlants] = useState([])
   const defaultImage = 'https://images.unsplash.com/photo-1530488586170-43cf29d7705b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=668&q=80';
 
   const logout = () => {
@@ -153,7 +152,6 @@ function App() {
         <header className="App-header">
           <div className='flex-container-left'>
             <h1>Water My Plants</h1>
-
           </div>
           <nav>
             <div className='nav-links'>
@@ -168,20 +166,20 @@ function App() {
         </header>
 
         <Switch>
-
           <Route path="plants/edit-form/:plantId">
-            <EditPlantForm setPlants={setPlants} />
+            <EditPlantForm />
           </Route>
+
           <PrivateRoute path="/plants/:plantId">
-            <Plant setPlants={setPlants} defaultImage={defaultImage}/>
+            <Plant defaultImage={defaultImage}/>
           </PrivateRoute>
 
           <PrivateRoute path="/plants">
-            <PlantsList setPlants={setPlants} defaultImage={defaultImage}/>
+            <PlantsList defaultImage={defaultImage}/>
           </PrivateRoute>
 
           <PrivateRoute path="/add-plant" >
-            <AddPlantForm setPlants={setPlants} />
+            <AddPlantForm />
           </PrivateRoute>
 
           <PrivateRoute path="/profile" component={ProfilePage} />
@@ -258,7 +256,6 @@ function App() {
           </div>
         </footer>
       </StyledApp>
-
     </div>
   );
 }

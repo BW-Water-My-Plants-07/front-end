@@ -16,6 +16,13 @@ const StyledPlant = styled.div`
         width: 80%;
         margin: 0 auto;
     }
+    img {
+        width: 350px;
+        height: 350px;
+        object-fit: cover;
+        margin: 1rem;
+        border-radius: 1rem;
+    }
     .plant-title-wrapper {
         display: flex;
         flex-direction: column;
@@ -74,26 +81,20 @@ const StyledPlant = styled.div`
 
 function Plant(props) {
     const [plant, setPlant] = useState({})
-    const {id} = useParams()
+    const {plantId} = useParams()
     const { url } = useRouteMatch();
 
     useEffect(()=>{
         axiosWithAuth()
-            .get(`/plants/${id}`)
+            .get(`/plants/${plantId}`)
             .then(res => {
-                res.data.forEach( obj => {
-                    // if(obj.plant_id === id){
-                    //     return obj;
-                    // }
-                    setPlant(obj)
-                })
-                // setPlant(res.data)
-                // console.log("info",res.data.id)
+                const plant = res.data.find(plant => plant.plant_id === parseInt(plantId))
+                setPlant(plant)
             })
             .catch(err=>{
                 console.log(err)
             })
-    },[id])
+    },[plantId])
 
     // const plant = plants.find(plant => plant.id === parseInt(plantId))
 
@@ -131,11 +132,11 @@ function Plant(props) {
                             </div>
                         </div>
 
-                        <Link className="edit-btn" to={`${url}/edit-plant/${id}`}>
+                        <Link className="edit-btn" to={`${url}/edit-plant/${plantId}`}>
                             Edit Plant
                         </Link>
-                        <Route path={`${url}/edit-plant/${id}`}>
-                            <EditPlantForm setPlants={setPlant} plantId={id} />
+                        <Route path={`${url}/edit-plant/${plantId}`}>
+                            <EditPlantForm setPlants={setPlant} plantId={plantId} key={plantId}/>
                         </Route>
                     </div>
                     <button 

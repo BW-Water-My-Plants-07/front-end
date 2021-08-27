@@ -35,6 +35,9 @@ const StyledList = styled.div`
             margin: 1rem;
         }
     }
+    .cap:first-letter {
+        text-transform: capitalize;
+    }
 `
 function PlantsList(props) {
     const [plants, setPlants] = useState([]);
@@ -63,7 +66,7 @@ function PlantsList(props) {
                                 src={plant.image ? plant.image : props.defaultImage}
                                 alt={plant.nickname}
                             />
-                            <p>Name: {plant.nickname}</p>
+                            <p className='cap'>Name: {plant.nickname}</p>
                         </Link>
                     
                     </div>

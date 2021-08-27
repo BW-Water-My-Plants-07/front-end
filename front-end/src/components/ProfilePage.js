@@ -47,7 +47,6 @@ export default function ProfilePage() {
         .get(`https://bw-water-my-plants-07-back-end.herokuapp.com/api/users`)
             .then(res => {
                 setUser(res.data)
-                console.log(res.data)
             })
             .catch(err => {
                 console.log(err)

@@ -75,6 +75,9 @@ const StyledPlant = styled.div`
         background: #c0392b;
         color: #fff;
     }
+    .cap:first-letter {
+        text-transform: capitalize;
+    }
 `
 
 function Plant(props) {
@@ -117,11 +120,11 @@ function Plant(props) {
                         <div className='details'>
                             <div className='detail top'>
                                 <h4>Species:</h4>
-                                <h4>{plant.species}</h4>
+                                <h4 className='cap'>{plant.species}</h4>
                             </div>
                             <div className='detail bottom'>
                                 <h4>How often to water:</h4>
-                                <h4>{plant.h2oFrequency}</h4>
+                                <h4 className='cap'>{plant.h2oFrequency}</h4>
                             </div>
                         </div>
 

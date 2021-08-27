@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Route, Link, Switch } from 'react-router-dom';
-import {axiosWithAuth} from './utils/axiosWithAuth'
 import Home from './components/Home'
 import Login from './components/Login';
 import Plant from './components/Plant';

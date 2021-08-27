@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components';
 import { useParams, Link, useRouteMatch, Route } from 'react-router-dom';
-// import { axiosWithAuth } from '../utils/axiosWithAuth';
 import EditPlantForm from './EditPlantForm';
 import {axiosWithAuth} from '../utils/axiosWithAuth'
 
@@ -94,10 +93,6 @@ function Plant(props) {
                 console.log(err)
             })
     },[plantId])
-
-    // const plant = plants.find(plant => plant.id === parseInt(plantId))
-
-    // if (!plant) return 'Plant not found...'
 
     const handleDeleteClick = (plantToDelete) => {
         axiosWithAuth()

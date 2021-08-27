@@ -80,9 +80,15 @@ function Plant(props) {
     useEffect(()=>{
         axiosWithAuth()
             .get(`/plants/${id}`)
-            .then(res=>{
-                setPlant(res.data)
-                console.log("info",res.data)
+            .then(res => {
+                res.data.forEach( obj => {
+                    // if(obj.plant_id === id){
+                    //     return obj;
+                    // }
+                    setPlant(obj)
+                })
+                // setPlant(res.data)
+                // console.log("info",res.data.id)
             })
             .catch(err=>{
                 console.log(err)
@@ -91,7 +97,7 @@ function Plant(props) {
 
     // const plant = plants.find(plant => plant.id === parseInt(plantId))
 
-    if (!plant) return 'Plant not found...'
+    // if (!plant) return 'Plant not found...'
 
     const handleDeleteClick = (plantToDelete) => {
         axiosWithAuth()

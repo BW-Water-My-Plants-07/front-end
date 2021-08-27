@@ -48,14 +48,12 @@ function PlantsList(props) {
             .get(`/plants`)
             .then(res=>{
                 setPlants(res.data)
-                console.log(res.data)
             })
             .catch(err=>{
                 console.log(err)
             })
     },[])
 
-    console.log('testing',plants[0])
     return (
         <StyledList>
             <div className='plants-list-wrapper'>

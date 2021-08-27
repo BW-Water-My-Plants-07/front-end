@@ -10,6 +10,7 @@ import AddPlantForm from './components/AddPlantForm'
 import PrivateRoute from './components/PrivateRoute'
 import './App.css'
 import styled from 'styled-components'
+import EditPlantForm from './components/EditPlantForm'
 
 const StyledApp = styled.div`
   font-family: sans-serif;
@@ -167,6 +168,13 @@ function App() {
 
         <Switch>
 
+          <Route path="plants/edit-form/:plantId">
+            <EditPlantForm setPlants={setPlants}/>
+          </Route>
+          <PrivateRoute path="/plants/:plantId">
+            <Plant plants={plants} setPlants={setPlants}/>
+          </PrivateRoute>
+          
           <PrivateRoute path="/plants">
             <PlantsList plants={plants} />
           </PrivateRoute> 
@@ -177,9 +185,7 @@ function App() {
 
           <PrivateRoute path="/profile" component={ProfilePage}/>
 
-          <PrivateRoute path="/plants/:plantId">
-            <Plant plants={plants} setPlants={setPlants}/>
-          </PrivateRoute>
+          
 
           <Route path="/login">
             <Login />
@@ -189,9 +195,9 @@ function App() {
             <SignUp />
           </Route>
 
-<Route path="/">
-  <Home />
-</Route>
+        <Route path="/">
+          <Home />
+        </Route>
 
         </Switch>
 

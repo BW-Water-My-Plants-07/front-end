@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Route, Link, Switch } from 'react-router-dom';
+import {axiosWithAuth} from './utils/axiosWithAuth'
 import Home from './components/Home'
 import Login from './components/Login';
 import Plant from './components/Plant';
@@ -127,7 +128,7 @@ const StyledApp = styled.div`
   }
 `
 
-window.onscroll = function() {scrollFunction()};
+window.onscroll = function () { scrollFunction() };
 function scrollFunction() {
   if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
     document.querySelector(".App-header").style.padding = "0.2rem 0";
@@ -169,23 +170,23 @@ function App() {
         <Switch>
 
           <Route path="plants/edit-form/:plantId">
-            <EditPlantForm setPlants={setPlants}/>
+            <EditPlantForm setPlants={setPlants} />
           </Route>
           <PrivateRoute path="/plants/:plantId">
-            <Plant plants={plants} setPlants={setPlants}/>
+            <Plant setPlants={setPlants} />
           </PrivateRoute>
-          
+
           <PrivateRoute path="/plants">
-            <PlantsList plants={plants} />
-          </PrivateRoute> 
+            <PlantsList setPlants={setPlants} />
+          </PrivateRoute>
 
           <PrivateRoute path="/add-plant" >
             <AddPlantForm setPlants={setPlants} />
           </PrivateRoute>
 
-          <PrivateRoute path="/profile" component={ProfilePage}/>
+          <PrivateRoute path="/profile" component={ProfilePage} />
 
-          
+
 
           <Route path="/login">
             <Login />
@@ -195,9 +196,9 @@ function App() {
             <SignUp />
           </Route>
 
-        <Route path="/">
-          <Home />
-        </Route>
+          <Route path="/">
+            <Home />
+          </Route>
 
         </Switch>
 

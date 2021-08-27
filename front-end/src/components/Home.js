@@ -23,22 +23,18 @@ const StyledHome = styled.div`
         border-radius: 50px;
         font-family: 'EB Garamond', serif;
     }
-
     .content-container {
         margin: 15rem 0;
         display: flex;
         justify-content: space-evenly;
     }
-
     .content-container .left-container {
         width: 45%;
-
         .watering-can {
             width: 30rem;
             border-radius: 1.5rem;
         }
     }
-
     .content-container .right-container {
         width: 40%;
         font-size: 1rem;
@@ -50,17 +46,15 @@ const StyledHome = styled.div`
             font-size: 2.5rem;
             margin: 3rem 0;
         }
-        
+    
         span {
             font-weight: bold;
         }
-
         .feature-icons {
             display: flex;
             flex-wrap: wrap;
             justify-content: flex-start;
             margin: 2rem 0;
-
             li {
                 display: flex;
                 align-items: center;
@@ -75,7 +69,6 @@ const StyledHome = styled.div`
             }
         }
     }
-
     .btn {
         background: #1AAB8A;
         color: #fff;
@@ -94,13 +87,10 @@ const StyledHome = styled.div`
         color: #1AAB8A;
         border: 1px #1AAB8A solid;
     }
-
     .signup {
         margin: 2rem 0;
         font-size: 1rem;
     }
-
-
 `
 export default function Home() {
     const history = useHistory()

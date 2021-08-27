@@ -1,8 +1,6 @@
-import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components';
 import { useParams, Link, useRouteMatch, Route, useHistory } from 'react-router-dom';
-// import { axiosWithAuth } from '../utils/axiosWithAuth';
 import EditPlantForm from './EditPlantForm';
 import {axiosWithAuth} from '../utils/axiosWithAuth'
 
@@ -77,6 +75,9 @@ const StyledPlant = styled.div`
         background: #c0392b;
         color: #fff;
     }
+    .cap:first-letter {
+        text-transform: capitalize;
+    }
 `
 
 function Plant(props) {
@@ -97,10 +98,6 @@ function Plant(props) {
             })
     },[plantId])
 
-    // const plant = plants.find(plant => plant.id === parseInt(plantId))
-
-    // if (!plant) return 'Plant not found...'
-
     const handleDeleteClick = () => {
         axiosWithAuth()
         .delete(`https://bw-water-my-plants-07-back-end.herokuapp.com/api/plants/${plantId}`)
@@ -119,17 +116,17 @@ function Plant(props) {
             <div className='plant-wrapper'>
                 <div className='plant-header'>
                     <div className='image-wrapper'>
-                        <img src={plant.image} alt={plant.nickname} />
+                        <img src={plant.image ? plant.image : props.defaultImage} alt={plant.nickname} />
                     </div>
                     <div className='plant-title-wrapper'>
                         <div className='details'>
                             <div className='detail top'>
                                 <h4>Species:</h4>
-                                <h4>{plant.species}</h4>
+                                <h4 className='cap'>{plant.species}</h4>
                             </div>
                             <div className='detail bottom'>
                                 <h4>How often to water:</h4>
-                                <h4>{plant.h2oFrequency}</h4>
+                                <h4 className='cap'>{plant.h2oFrequency}</h4>
                             </div>
                         </div>
 

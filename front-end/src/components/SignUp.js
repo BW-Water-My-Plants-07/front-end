@@ -166,7 +166,6 @@ export default function SignUp(props) {
                     id="password"
                     value={user.password}
                     onChange={onChange}
-                    // placeholder="--- password ---"
                   />
                 </label>
                 <button id="submit" type="submit">

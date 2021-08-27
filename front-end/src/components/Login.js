@@ -81,9 +81,7 @@ const initialValues = {
 export default function Login(props) {
   const {push} = useHistory()
   const [user, setUser] = useState(initialValues)
-  const [error, setError] = useState(
-    ""
-  );
+  const [error, setError] = useState("");
   const handleChange = e => {
     setUser({
       ...user,
@@ -127,7 +125,6 @@ export default function Login(props) {
                 id="username"
                 value={user.username}
                 onChange={handleChange}
-              // placeholder="--- username ---"
               />
             </label>
             <label>Password
@@ -137,7 +134,6 @@ export default function Login(props) {
                 id="password"
                 value={user.password}
                 onChange={handleChange}
-              // placeholder="--- password ---"
               />
             </label>
             <button id="submit" type="submit" onClick={handleSubmit}>

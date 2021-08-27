@@ -150,4 +150,3 @@ function Plant(props) {
 }
 
 export default Plant;
-

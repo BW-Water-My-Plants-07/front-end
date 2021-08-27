@@ -113,7 +113,6 @@ const AddPlantForm = props => {
         axiosWithAuth()
         .post("https://bw-water-my-plants-07-back-end.herokuapp.com/api/plants", newPlant)
             .then(res => {
-                // setPlant(res.data)
                 history.push('/plants')
             })
     }

@@ -113,7 +113,8 @@ const AddPlantForm = props => {
         axiosWithAuth()
         .post("https://bw-water-my-plants-07-back-end.herokuapp.com/api/plants", newPlant)
             .then(res => {
-                setPlant(res.data)
+                // setPlant(res.data)
+                history.push('/plants')
             })
     }
     const history = useHistory()
@@ -125,7 +126,6 @@ const AddPlantForm = props => {
     const onSubmit = e => {
         e.preventDefault()
         submitForm()
-        history.push('/plants')
     }
 
     return (

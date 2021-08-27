@@ -1,7 +1,7 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useRouteMatch } from 'react-router-dom';
 import styled from 'styled-components';
-import {axiosWithAuth} from '../utils/axiosWithAuth'
+import { axiosWithAuth } from '../utils/axiosWithAuth'
 
 const StyledList = styled.div`
     .plants-list-wrapper {
@@ -38,45 +38,76 @@ const StyledList = styled.div`
     .cap:first-letter {
         text-transform: capitalize;
     }
+    .add-plant {
+        padding: 200px 0 500px;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        justify-content: center;
+        border: 1px black solid;
+    }
+    h2 {
+        font-size: 2rem;
+        font-weight: 200;
+        letter-spacing: 1px;
+    }
+    .switch {
+        color: #212324;
+        background-color: #b9e529;
+        border-color: #b9e529;
+        padding: 0.5rem 1rem;
+        font-size: 1rem;
+        font-weight: 200;
+        letter-spacing: 1px;
+        padding: 13px 50px 13px;
+        margin-top: 1rem;
+      }
 `
 function PlantsList(props) {
     const [plants, setPlants] = useState([]);
     const { url } = useRouteMatch();
-    useEffect(()=>{
+    useEffect(() => {
         axiosWithAuth()
             .get(`/plants`)
-            .then(res=>{
+            .then(res => {
                 setPlants(res.data)
             })
-            .catch(err=>{
+            .catch(err => {
                 console.log(err)
             })
-    },[])
+    }, [])
 
     return (
         <StyledList>
-            <div className='plants-list-wrapper'>
-                {plants.map(plant => (
-                    <div
-                        className='plant-card'
-                        key={plant.id}
-                    > 
-                        <Link to={`${url}/${plant.plant_id}`}>
-                            <img className='plants-list-image'
-                                src={plant.image ? plant.image : props.defaultImage}
-                                alt={plant.nickname}
-                            />
-                            <p className='cap'>Name: {plant.nickname}</p>
-                        </Link>
-                    
-                    </div>
-                ))}
-            </div>
+            { plants.length > 0 ?
+                <div className='plants-list-wrapper'>
+                    {plants.map(plant => (
+                        <div
+                            className='plant-card'
+                            key={plant.plant_id}
+                        >
+                            <Link to={`${url}/${plant.plant_id}`}>
+                                <img className='plants-list-image'
+                                    src={plant.image ? plant.image : props.defaultImage}
+                                    alt={plant.nickname}
+                                />
+                                <p className='cap'>Name: {plant.nickname}</p>
+                            </Link>
+                        </div>
+                    ))}
+                </div>
+                :
+                <div className='add-plant'>
+                    <h2>Please Add a Plant</h2>
+                    <Link to="/add-plant">
+                        <button type='button' className='switch'>
+                            Add Plant
+                        </button>
+                    </Link>
+                </div>
+            }
         </StyledList>
-)
+    )
 }
 
 export default PlantsList;
-
-
-

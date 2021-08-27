@@ -71,6 +71,7 @@ function PlantsList(props) {
                             />
                             <p>Name: {plant.nickname}</p>
                         </Link>
+                    
                     </div>
                 ))}
             </div>

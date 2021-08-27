@@ -1,9 +1,10 @@
 import axios from 'axios';
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components';
 import { useParams, Link, useRouteMatch, Route } from 'react-router-dom';
 // import { axiosWithAuth } from '../utils/axiosWithAuth';
 import EditPlantForm from './EditPlantForm';
+import {axiosWithAuth} from '../utils/axiosWithAuth'
 
 const StyledPlant = styled.div`
     .plant-wrapper {
@@ -72,30 +73,33 @@ const StyledPlant = styled.div`
 `
 
 function Plant(props) {
-    const { plants, setPlants, deletePlant } = props;
-    const { plantId } = useParams();
+    const [plant, setPlant] = useState({})
+    const {id} = useParams()
     const { url } = useRouteMatch();
 
-    // useEffect(()=>{
-    //     axiosWithAuth()
-    //         .get(`/plants`)
-    //         .then(res=>{
-    //             setPlants(res.data)
-    //             console.log(res.data)
-    //         })
-    //         .catch(err=>{
-    //             console.log(err)
-    //         })
-    // },[])
+    useEffect(()=>{
+        axiosWithAuth()
+            .get(`/plants/${id}`)
+            .then(res=>{
+                setPlant(res.data)
+                console.log("info",res.data)
+            })
+            .catch(err=>{
+                console.log(err)
+            })
+    },[id])
 
-    const plant = plants.find(plant => plant.id === parseInt(plantId))
+    // const plant = plants.find(plant => plant.id === parseInt(plantId))
 
     if (!plant) return 'Plant not found...'
 
-    const handleDeleteClick = () => {
-        axios.delete(`https://bw-water-my-plants-07-back-end.herokuapp.com/api/plants/${plantId}`)
+    const handleDeleteClick = (plantToDelete) => {
+        axiosWithAuth()
+        .delete(`https://bw-water-my-plants-07-back-end.herokuapp.com/api/plants/${plantToDelete.id}`)
             .then(res => {
-                deletePlant(res.data)
+                props.setPlant(res.data)
+                props.history.push('/plants')
+
             })
             .catch(err => {
                 console.error(err)
@@ -107,7 +111,7 @@ function Plant(props) {
             <div className='plant-wrapper'>
                 <div className='plant-header'>
                     <div className='image-wrapper'>
-                        <img src={plant.img} alt={plant.nickname} />
+                        <img src={plant.image} alt={plant.nickname} />
                     </div>
                     <div className='plant-title-wrapper'>
                         <div className='details'>
@@ -121,11 +125,11 @@ function Plant(props) {
                             </div>
                         </div>
 
-                        <Link className="edit-btn" to={`${url}/edit-plant/${plantId}`}>
+                        <Link className="edit-btn" to={`${url}/edit-plant/${id}`}>
                             Edit Plant
                         </Link>
-                        <Route path={`${url}/edit-plant/${plantId}`}>
-                            <EditPlantForm setPlants={setPlants} plantId={plantId} />
+                        <Route path={`${url}/edit-plant/${id}`}>
+                            <EditPlantForm setPlants={setPlant} plantId={id} />
                         </Route>
                     </div>
                     <button 

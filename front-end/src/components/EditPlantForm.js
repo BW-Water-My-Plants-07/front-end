@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import axios from 'axios'
+import {axiosWithAuth} from '../utils/axiosWithAuth'
 import styled from 'styled-components';
 
 const StyledEditForm = styled.div`
@@ -62,87 +62,92 @@ const StyledEditForm = styled.div`
         width: 10rem;
       }
 `
-
+const initialValues = {
+    nickname: "",
+    species: "",
+    h2oFrequency: "",
+    image:""
+}
 const EditPlantForm = props => {
-    const { push } = useHistory();
-    const { id } = useParams();
-    const { setPlants, plantId } = props;
+    const [plant, setPlant] = useState(initialValues)
 
-    const [plant, setPlant] = useState({
-        nickname: "",
-        species: "",
-        h2oFrequency: "",
-        img: ""
-    })
-    useEffect(() => {
-        axios.get(`https://bw-water-my-plants-07-back-end.herokuapp.com/api/plants/${id}`)
-            .then(res => {
-                setPlant(id)
-            })
-            .catch(err => {
-                console.log(err)
-            })
-    }, [id])
-    const handleChange = (e) => {
+    const updateForm = (inputName, inputValue) => {
         setPlant({
             ...plant,
-            [e.target.name]: e.target.value
+            [inputName]: inputValue
         })
     }
-    const handleSubmit = e => {
-        e.preventDefault()
-        axios.put(`https://bw-water-my-plants-07-back-end.herokuapp.com/api/plants/${id}`, plant)
+    const submitForm = e => {
+        const newPlant ={
+            nickname: plant.nickname.trim(),
+            species: plant.species.trim(),
+            h2oFrequency: plant.h2oFrequency.trim(),
+            image: plant.image.trim()
+          }
+        axiosWithAuth()
+        .put("https://bw-water-my-plants-07-back-end.herokuapp.com/api/plants", newPlant)
             .then(res => {
-                setPlants(res.data)
-                push(`/plants-list/${id}`)
+                setPlant(res.data)
             })
     }
-    const { nickname, species, h2oFrequency, img } = plant
+    const history = useHistory()
+    
+    const onChange = e => {
+        const {name,value} = e.target
+        updateForm(name,value)
+    }
+    const onSubmit = e => {
+        e.preventDefault()
+        submitForm()
+        history.push('/plants')
+    }
 
     return (
         <StyledEditForm>
-            <form onSubmit={handleSubmit} className="form-wrapper">
-                <div className="form-body">
-                    <div className="form-group">
-                        <label>Nickname </label>
-                        <input value={nickname} onChange={handleChange} name="nickname" type="text" className="form-control" />
-                    </div>
-                    <div className="form-group">
-                        <label>Species </label>
-                        <input value={species} onChange={handleChange} name="species" type="text" className="form-control" />
-                    </div>
+            <div className='form-wrapper'>
+                <div className="form-header">
+                    <h2>Add a Plant</h2>
+                </div>
+                <form onSubmit={onSubmit}>
+                    <div className="form-body">
+                        <div className="form-group">
+                            <label>Nickname </label>
+                            <input value={plant.nickname} onChange={onChange} name="nickname" type="text" className="form-control" />
+                        </div>
+                        <div className="form-group">
+                            <label>Species </label>
+                            <input value={plant.species} onChange={onChange} name="species" type="text" className="form-control" />
+                        </div>
 
-                    <div className="form-group">
-                        <label>H2O Frequency </label>
-                        <select
-                            value={h2oFrequency}
-                            onChange={handleChange}
-                            name="h2oFrequency"
+                        <div className="form-group">
+                            <label>H2O Frequency </label>
+                            <select 
+                            value={plant.h2oFrequency} 
+                            onChange={onChange} 
+                            name="h2oFrequency" 
                             className="dropdown" >
-                            <option value=''>--Select Watering Frequency--</option>
-                            <option value='none'>None</option>
-                            <option value='daily'>Daily</option>
-                            <option value='twice a week'>Twice a Week</option>
-                            <option value='weekly'>Weekly</option>
-                            <option value='every two weeks'>Every Two Weeks</option>
-                            <option value='every three weeks'>Every Three Weeks</option>
-                        </select>
+                                <option value=''>--Select Watering Frequency--</option>
+                                <option value='none'>None</option>
+                                <option value='daily'>Daily</option>
+                                <option value='twice a week'>Twice a Week</option>
+                                <option value='weekly'>Weekly</option>
+                                <option value='every two weeks'>Every Two Weeks</option>
+                                <option value='every three weeks'>Every Three Weeks</option>
+                            </select>
+                        </div>
+                        
+                        <div className="form-group">
+                            <label>Image link </label>
+                            <input value={plant.image} onChange={onChange} name="image" type="text" className="form-control" />
+                        </div>
                     </div>
-
-                    <div className="form-group">
-                        <label>Image link </label>
-                        <input value={img} onChange={handleChange} name="img" type="text" className="form-control" />
+                    <div className="form-submit">
+                        <input type="submit" className="submit-btn" value="Save" />
+                        <Link to={`/plants`}><input type="button" className="cancel-btn" value="Cancel" /></Link>
                     </div>
-                </div>
-                <div className="form-submit">
-                    <input type="submit" className="submit-btn" value="Save" />
-                    <Link to={`/plants/${plantId}`}>
-                        <input type="button" className="cancel-btn" value="Cancel" />
-                    </Link>
-                </div>
-            </form>
+                </form>
+            </div>
         </StyledEditForm>
-
     )
 }
 export default EditPlantForm

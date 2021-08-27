@@ -105,24 +105,21 @@ const EditPlantForm = props => {
     return (
         <StyledEditForm>
             <div className='form-wrapper'>
-                <div className="form-header">
-                    <h2>Add a Plant</h2>
-                </div>
                 <form onSubmit={onSubmit}>
                     <div className="form-body">
                         <div className="form-group">
                             <label>Nickname </label>
-                            <input value={plant.nickname} onChange={onChange} name="nickname" type="text" className="form-control" />
+                            <input value={props.plant.nickname} onChange={onChange} name="nickname" type="text" className="form-control" />
                         </div>
                         <div className="form-group">
                             <label>Species </label>
-                            <input value={plant.species} onChange={onChange} name="species" type="text" className="form-control" />
+                            <input value={props.plant.species} onChange={onChange} name="species" type="text" className="form-control" />
                         </div>
 
                         <div className="form-group">
                             <label>H2O Frequency </label>
                             <select 
-                            value={plant.h2oFrequency} 
+                            value={props.plant.h2oFrequency} 
                             onChange={onChange} 
                             name="h2oFrequency" 
                             className="dropdown" >
@@ -138,7 +135,7 @@ const EditPlantForm = props => {
                         
                         <div className="form-group">
                             <label>Image link </label>
-                            <input value={plant.image} onChange={onChange} name="image" type="text" className="form-control" />
+                            <input value={props.plant.image} onChange={onChange} name="image" type="text" className="form-control" />
                         </div>
                     </div>
                     <div className="form-submit">

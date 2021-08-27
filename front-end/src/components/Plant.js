@@ -134,7 +134,7 @@ function Plant(props) {
                             Edit Plant
                         </Link>
                         <Route path={`${url}/edit-plant/${plantId}`}>
-                            <EditPlantForm setPlants={setPlant} plantId={plantId} key={plantId}/>
+                            <EditPlantForm setPlants={setPlant} plant={plant} plantId={plantId} key={plantId}/>
                         </Route>
                     </div>
                     <button 

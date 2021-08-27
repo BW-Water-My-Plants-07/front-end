@@ -12,8 +12,6 @@ const StyledList = styled.div`
         width: 80%;
         margin: 0 auto;
     }
-
-    
     .plant-card {
         display: flex;
         width: 400px;
@@ -36,9 +34,7 @@ const StyledList = styled.div`
             color: #164A41;
             margin: 1rem;
         }
-
     }
-
 `
 function PlantsList(props) {
     const [plants, setPlants] = useState([]);
@@ -64,7 +60,7 @@ function PlantsList(props) {
                     > 
                         <Link to={`${url}/${plant.plant_id}`}>
                             <img className='plants-list-image'
-                                src={plant.image}
+                                src={plant.image ? plant.image : props.defaultImage}
                                 alt={plant.nickname}
                             />
                             <p>Name: {plant.nickname}</p>

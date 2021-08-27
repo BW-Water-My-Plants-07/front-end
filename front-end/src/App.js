@@ -141,6 +141,7 @@ function scrollFunction() {
 
 function App() {
   const [plants, setPlants] = useState([])
+  const defaultImage = 'https://images.unsplash.com/photo-1530488586170-43cf29d7705b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=668&q=80';
 
   const logout = () => {
     localStorage.removeItem("token");
@@ -173,11 +174,11 @@ function App() {
             <EditPlantForm setPlants={setPlants} />
           </Route>
           <PrivateRoute path="/plants/:plantId">
-            <Plant setPlants={setPlants} />
+            <Plant setPlants={setPlants} defaultImage={defaultImage}/>
           </PrivateRoute>
 
           <PrivateRoute path="/plants">
-            <PlantsList setPlants={setPlants} />
+            <PlantsList setPlants={setPlants} defaultImage={defaultImage}/>
           </PrivateRoute>
 
           <PrivateRoute path="/add-plant" >
@@ -185,8 +186,6 @@ function App() {
           </PrivateRoute>
 
           <PrivateRoute path="/profile" component={ProfilePage} />
-
-
 
           <Route path="/login">
             <Login />

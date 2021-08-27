@@ -1,4 +1,3 @@
-import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components';
 import { useParams, Link, useRouteMatch, Route } from 'react-router-dom';
@@ -106,7 +105,6 @@ function Plant(props) {
             .then(res => {
                 props.setPlant(res.data)
                 props.history.push('/plants')
-
             })
             .catch(err => {
                 console.error(err)
@@ -118,7 +116,7 @@ function Plant(props) {
             <div className='plant-wrapper'>
                 <div className='plant-header'>
                     <div className='image-wrapper'>
-                        <img src={plant.image} alt={plant.nickname} />
+                        <img src={plant.image ? plant.image : props.defaultImage} alt={plant.nickname} />
                     </div>
                     <div className='plant-title-wrapper'>
                         <div className='details'>

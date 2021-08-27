@@ -1,14 +1,8 @@
 import axios from 'axios';
-import React from 'react'
+import React, { useEffect } from 'react'
 import styled from 'styled-components';
-import {
-    useParams,
-    Link,
-    useRouteMatch,
-    Route,
-    // Switch,
-    // NavLink
-} from 'react-router-dom';
+import { useParams, Link, useRouteMatch, Route } from 'react-router-dom';
+// import { axiosWithAuth } from '../utils/axiosWithAuth';
 import EditPlantForm from './EditPlantForm';
 
 const StyledPlant = styled.div`
@@ -78,11 +72,22 @@ const StyledPlant = styled.div`
 `
 
 function Plant(props) {
-    //will need to get confirmation on what props are available or if need to build useState inside here
-    const { plants, setPlant, deletePlant } = props;
+    const { plants, setPlants, deletePlant } = props;
     const { plantId } = useParams();
-    // not sure if below is necessary
-    const { path, url } = useRouteMatch();
+    const { url } = useRouteMatch();
+
+    // useEffect(()=>{
+    //     axiosWithAuth()
+    //         .get(`/plants`)
+    //         .then(res=>{
+    //             setPlants(res.data)
+    //             console.log(res.data)
+    //         })
+    //         .catch(err=>{
+    //             console.log(err)
+    //         })
+    // },[])
+
     const plant = plants.find(plant => plant.id === parseInt(plantId))
 
     if (!plant) return 'Plant not found...'
@@ -105,8 +110,6 @@ function Plant(props) {
                         <img src={plant.img} alt={plant.nickname} />
                     </div>
                     <div className='plant-title-wrapper'>
-                        {/* This is if we want to add an image for stretch */}
-                        {/* <img src='' alt={plant.species} /> */}
                         <div className='details'>
                             <div className='detail top'>
                                 <h4>Species:</h4>
@@ -122,7 +125,7 @@ function Plant(props) {
                             Edit Plant
                         </Link>
                         <Route path={`${url}/edit-plant/${plantId}`}>
-                            <EditPlantForm setPlant={setPlant} plantId={plantId} />
+                            <EditPlantForm setPlants={setPlants} plantId={plantId} />
                         </Route>
                     </div>
                     <button 

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components';
-import { useParams, Link, useRouteMatch, Route } from 'react-router-dom';
+import { useParams, Link, useRouteMatch, Route, useHistory } from 'react-router-dom';
 import EditPlantForm from './EditPlantForm';
 import {axiosWithAuth} from '../utils/axiosWithAuth'
 
@@ -84,6 +84,7 @@ function Plant(props) {
     const [plant, setPlant] = useState({})
     const {plantId} = useParams()
     const { url } = useRouteMatch();
+    const history = useHistory()
 
     useEffect(()=>{
         axiosWithAuth()
@@ -97,12 +98,13 @@ function Plant(props) {
             })
     },[plantId])
 
-    const handleDeleteClick = (plantToDelete) => {
+    const handleDeleteClick = () => {
         axiosWithAuth()
-        .delete(`https://bw-water-my-plants-07-back-end.herokuapp.com/api/plants/${plantToDelete.id}`)
+        .delete(`https://bw-water-my-plants-07-back-end.herokuapp.com/api/plants/${plantId}`)
             .then(res => {
-                props.setPlant(res.data)
-                props.history.push('/plants')
+                setPlant(res.data)
+                history.push('/plants')
+
             })
             .catch(err => {
                 console.error(err)
